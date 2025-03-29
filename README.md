@@ -19,10 +19,11 @@ Markdown Text Editor powered by [Showdown](https://github.com/showdownjs/showdow
     - [Tables](#tables)
     - [Collapsed sections](#collapsed-sections)
     - [Using emojis](#using-emojis)
-    - [Icons](#icons)
     - [Paragraphs](#paragraphs)
     - [Hiding content with comments](#hiding-content-with-comments)
     - [Ignoring Markdown formatting](#ignoring-markdown-formatting)
+- [Markedit syntax](#markedit-syntax)
+    - [Icons](#icons)
 
 ---
 
@@ -225,13 +226,6 @@ The drunk emoji is kinda funny :woozy_face:.
 
 For a full list of available emoji and codes, see the [Emoji-Cheat-Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md).
 
-### Icons
-You can insert icons from [Google Material Symbols](https://fonts.google.com/icons) in your document by using the `<icon>` tag.
-```
-<icon>warning</icon> This feature is not supported by GitHub.
-```
-<icon>warning</icon> This feature is not supported by GitHub.
-
 ### Paragraphs
 You can create a new paragraph by leaving a blank line between lines of text.
 
@@ -247,3 +241,27 @@ You can tell Markedit to ignore (or escape) Markdown formatting by using `\` bef
 Let's rename \*our-new-project\* to \*our-old-project\*.
 ```
 Let's rename \*our-new-project\* to \*our-old-project\*.
+
+## Markedit syntax
+### Icons
+You can insert icons from [Google Material Symbols](https://fonts.google.com/icons) in your document by using the `<icon>` tag.
+```
+<icon>warning</icon> This feature is not supported by GitHub.
+```
+<icon>warning</icon> This feature is not supported by GitHub.
+
+### Document styling
+#### Changing document colors
+You can use comments to set custom colors to the UI.
+```
+<!-- style.color.--bg=#272822 -->
+<!-- style.color.--bg2=#2E2E2E -->
+<!-- style.color.--bg2-transparent=#272822 -->
+<!-- style.color.--text=#F8F8F2 -->
+<!-- style.color.--text2=#A6E22E -->
+<!-- style.color.--border=#66D9EF -->
+<!-- style.color.--highlight=#F92672 -->
+<!-- style.color.--highlightbg=#49483E -->
+
+Monokai Theme
+```

@@ -9,7 +9,6 @@
     --border: #666666;
     --highlight: #44caff;
     --highlightbg: #44caff33;
-    --success: #8fff44;
 }
 
 body {
@@ -192,6 +191,13 @@ textarea {
     transform: scale(1.1);
 }
 
+@media screen and (max-width: 500px) {
+    .document img {
+        width: 100%;
+        max-height: initial;
+    }
+}
+
 /* __ Separators ______________________________________________________________ */
 
 .document hr {
@@ -211,6 +217,10 @@ textarea {
     border-radius: 10px;
     border: 1px solid var(--border);
     padding: 10px;
+}
+
+.document details summary { 
+    cursor: pointer;
 }
 
 .document details[open]{

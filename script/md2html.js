@@ -6287,37 +6287,71 @@
     }).call(this);
     
     //# sourceMappingURL=showdown.js.map
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const input = document.getElementById("input");
-    const output = document.getElementById("output");
-
-    input.addEventListener("input", function () {
-        var converter = new showdown.Converter();
-        output.innerHTML = converter.makeHtml(input.value);
-    });
-});
-
-function loadMarkdownFile(filePath, divId) {
-  // Realiza uma requisição para obter o conteúdo do arquivo Markdown
-  fetch(filePath)
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Falha ao carregar o arquivo');
-          }
-          return response.text();
-      })
-      .then(markdownContent => {
-          // Converte o conteúdo Markdown para HTML
-          var converter = new showdown.Converter();
-          var htmlContent = converter.makeHtml(markdownContent);
-
-          // Renderiza o conteúdo convertido na div especificada
-          const div = document.getElementById(divId);
-          div.innerHTML = htmlContent;
-      })
-      .catch(error => {
-          console.error("Erro ao carregar o arquivo Markdown: ", error);
+    document.addEventListener("DOMContentLoaded", function () {
+      const input = document.getElementById("input");
+      const output = document.getElementById("output");
+  
+      input.addEventListener("input", function () {
+          updateMarkdown(input.value);
       });
-}
+  });
+  
+  // Lista de variáveis CSS modificadas
+  let modifiedVariables = new Set();
+  
+  function updateMarkdown(markdown) {
+      // Remove temporariamente blocos de código (`` ` e ``` ```) para evitar interpretação errada
+      let codeBlocks = [];
+      let placeholder = "\uFFFC"; // Caracter especial para substituir blocos de código
+  
+      markdown = markdown.replace(/(```[\s\S]*?```|`[^`\n]+`)/g, match => {
+          codeBlocks.push(match); // Armazena o bloco de código original
+          return placeholder; // Substitui por um caractere temporário
+      });
+  
+      // Identifica e aplica as cores do markdown
+      let activeVariables = new Set();
+      let processedMarkdown = markdown.replace(/<!--\s*style\.color\.([\w-]+)=#([0-9a-fA-F]{6})\s*-->/g, (match, varName, color) => {
+          document.documentElement.style.setProperty(varName, `#${color}`);
+          activeVariables.add(varName);
+          modifiedVariables.add(varName);
+          return ''; // Remove o comentário do Markdown final
+      });
+  
+      // Resetar variáveis que foram removidas do Markdown
+      modifiedVariables.forEach(varName => {
+          if (!activeVariables.has(varName)) {
+              document.documentElement.style.removeProperty(varName);
+              modifiedVariables.delete(varName);
+          }
+      });
+  
+      // Restaurar os blocos de código na posição original
+      let i = 0;
+      processedMarkdown = processedMarkdown.replace(/\uFFFC/g, () => codeBlocks[i++]);
+  
+      // Converte e exibe o Markdown atualizado
+      var converter = new showdown.Converter();
+      output.innerHTML = converter.makeHtml(processedMarkdown);
+  }
+  
+  // Função para carregar um arquivo Markdown e renderizar na div com o id especificado
+  function loadMarkdownFile(filePath, divId) {
+      fetch(filePath)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Falha ao carregar o arquivo');
+              }
+              return response.text();
+          })
+          .then(markdownContent => {
+              updateMarkdown(markdownContent);
+  
+              // Converte o Markdown para HTML
+              var converter = new showdown.Converter();
+              document.getElementById(divId).innerHTML = converter.makeHtml(markdownContent);
+          })
+          .catch(error => {
+              console.error("Erro ao carregar o arquivo Markdown: ", error);
+          });
+  }
