@@ -29,7 +29,7 @@
           type: 'boolean'
         },
         ghCompatibleHeaderId: {
-          defaultValue: false,
+          defaultValue: true,
           describe: 'Generate header ids compatible with github style (spaces are replaced with dashes, a bunch of non alphanumeric chars are removed)',
           type: 'boolean'
         },
@@ -114,7 +114,7 @@
           type: 'boolean'
         },
         ghMentions: {
-          defaultValue: false,
+          defaultValue: true,
           describe: 'Enables github @mentions',
           type: 'boolean'
         },
@@ -129,22 +129,22 @@
           type: 'boolean'
         },
         openLinksInNewWindow: {
-          defaultValue: false,
+          defaultValue: true,
           describe: 'Open all links in new windows',
           type: 'boolean'
         },
         backslashEscapesHTMLTags: {
-          defaultValue: false,
+          defaultValue: true,
           describe: 'Support for HTML Tag escaping. ex: \<div>foo\</div>',
           type: 'boolean'
         },
         emoji: {
-          defaultValue: false,
+          defaultValue: true,
           describe: 'Enable emoji support. Ex: `this is a :smile: emoji`',
           type: 'boolean'
         },
         underline: {
-          defaultValue: false,
+          defaultValue: true,
           describe: 'Enable support for underline. Syntax is double or triple underscores: `__underline word__`. With this option enabled, underscores no longer parses into `<em>` and `<strong>`',
           type: 'boolean'
         },
@@ -6288,6 +6288,7 @@
     
     //# sourceMappingURL=showdown.js.map
 
+
 document.addEventListener("DOMContentLoaded", function () {
     const input = document.getElementById("input");
     const output = document.getElementById("output");
@@ -6297,3 +6298,26 @@ document.addEventListener("DOMContentLoaded", function () {
         output.innerHTML = converter.makeHtml(input.value);
     });
 });
+
+function loadMarkdownFile(filePath, divId) {
+  // Realiza uma requisição para obter o conteúdo do arquivo Markdown
+  fetch(filePath)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Falha ao carregar o arquivo');
+          }
+          return response.text();
+      })
+      .then(markdownContent => {
+          // Converte o conteúdo Markdown para HTML
+          var converter = new showdown.Converter();
+          var htmlContent = converter.makeHtml(markdownContent);
+
+          // Renderiza o conteúdo convertido na div especificada
+          const div = document.getElementById(divId);
+          div.innerHTML = htmlContent;
+      })
+      .catch(error => {
+          console.error("Erro ao carregar o arquivo Markdown: ", error);
+      });
+}

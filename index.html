@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <div class="container">
-        <div id="output"></div>
+    <div id="output" class="document">
+        <!-- markdown here -->
+    </div>
+    <div id="bottom-bar">
+        <textarea id="input" placeholder="Aa"></textarea>
+        <a href="help.html" target="_blank">help</a>
     </div>
 
-    <textarea id="input"></textarea>
-    
     <script src="script/md2html.js"></script>
 
     <script>
@@ -21,7 +23,7 @@
                 alert("save as .md");
             }
 
-            if (event.ctrlKey && event.key === "s") { // ctrl+o -  open
+            if (event.ctrlKey && event.key === "o") { // ctrl+o -  open
                 alert("open .md file");
             }
             
@@ -30,7 +32,7 @@
                 insertTextAroundSelection(this, "**", "**");
             }
         
-            if (event.ctrlKey && event.key === "i") { // ctrl+i - italics
+            if (event.ctrlKey && event.key === "i") { // ctrl+i - italic
                 event.preventDefault();
                 insertTextAroundSelection(this, "*", "*");
             }
@@ -46,6 +48,6 @@
             
             textarea.selectionStart = textarea.selectionEnd = start + prefix.length + selectedText.length + suffix.length;
         }
-        </script>
+    </script>
 </body>
 </html>

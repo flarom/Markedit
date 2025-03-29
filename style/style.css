@@ -1,21 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+
 :root {
     --bg: #242424;
     --bg2: #393939;
+    --bg2-transparent: #39393988;
     --text: #dddddd;
     --text2: #ffffff;
     --border: #666666;
-
-    --link: #44caff;
-    --linkbg: #44caff33;
+    --highlight: #44caff;
+    --highlightbg: #44caff33;
+    --success: #8fff44;
 }
 
 body {
     background-color: var(--bg);
     color: var(--text);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
 }
 
-.container {
+.document {
     border-radius: 15px;
     padding: 10px;
     width: 90%;
@@ -23,57 +27,117 @@ body {
     margin: 0 auto;
     z-index: 2;
     margin-bottom: 10px;
-    height: 100vh;
+    height: calc(100vh - 100px);
+    padding-bottom: 200px;
+    overflow: scroll;
+}
+
+#bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 12vw;
+    width: 100%;
+    padding: 10px;
+    z-index: 3;
 }
 
 textarea {
-    position: fixed;
-    font-size: large;
-    bottom: 0;
-    left: 10vw;
-    width: 76vw;
+    font-size: larger;
+    width: 75%;
     height: 75px;
-    background-color: var(--bg2);
+    background-color: var(--bg2-transparent);
+    backdrop-filter: blur(10px);
     color: var(--text2);
     border: 1px solid var(--border);
     border-radius: 15px;
     outline: none;
     resize: none;
     padding: 10px;
-    margin: 10px;
     box-sizing: border-box;
 }
 
-h1,h2,h3,h4,h5,h6 {
-    color:var(--text2);
+.document icon {
+    font-size: x-large;
+    font-family: "Material Symbols Outlined";
+    margin-right: 3px;
+    border-radius: 3px;
+    vertical-align: middle;
+
+    transition: background-color 0.3s, padding 0.3s, color 0.3s, vertical-align 0.3s;
 }
 
-blockquote {
-    border-left: 3px solid var(--border);
-    padding-left: 8px;
+.document icon:hover {
+    font-size: initial;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--highlight);
+    background-color: var(--highlightbg);
+    padding-left: 5px;
+    padding-right: 5px;
+    vertical-align: initial;
 }
 
-table, th, td {
-    border: 1px solid var(--border);
-    border-collapse: collapse;
-    padding: 5px;
-    border-radius: 5px;
-}
+/* __ Titles __________________________________________________________________ */
 
-table {
-    width: 100%;
-    overflow: scroll;
-}
-
-tr {
+.document h1,
+.document h2,
+.document h3,
+.document h4,
+.document h5,
+.document h6 {
+    color: var(--text2);
     transition: all 0.3s;
 }
 
-tr:hover {
+/* __ Tables __________________________________________________________________ */
+
+.document table {
+    width: 100%;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    border-bottom: 2px solid var(--border);
+}
+
+.document th,
+.document td {
+    border: 1px solid var(--border);
+    padding: 5px;
+}
+
+.document th {
+    background-color: var(--bg2);
+    font-weight: 100;
+}
+
+.document th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.document th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.document tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.document tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+.document tr {
+    transition: all 0.3s;
+}
+
+.document tr:hover {
     background-color: var(--bg2);
 }
 
-code {
+/* __ Codeblock _______________________________________________________________ */
+
+.document code {
+    font-size: larger;
     background-color: var(--bg2);
     padding-left: 4px;
     padding-right: 4px;
@@ -81,14 +145,15 @@ code {
     border: 1px solid var(--border);
 }
 
-pre {
+.document pre {
     background-color: var(--bg2);
     padding: 4px;
     border-radius: 5px;
     border: 1px solid var(--border);
+    border-bottom: 2px solid var(--border);
 }
 
-pre code {
+.document pre code {
     background-color: none;
     padding-left: 0;
     padding-right: 0;
@@ -96,33 +161,109 @@ pre code {
     border: none;
 }
 
-a {
-    color: var(--link);
+/* __ Links ___________________________________________________________________ */
+
+.document a {
+    color: var(--highlight);
     text-decoration: none;
     border-radius: 3px;
 
-    background: linear-gradient(90deg, var(--linkbg) 0%, var(--linkbg) 50%, #00000000 50%, #00000000 100%);
+    background: linear-gradient(90deg, var(--highlightbg) 0%, var(--highlightbg) 50%, #00000000 50%, #00000000 100%);
     background-size: 200% 100%;
     background-position: 100% 0;
     transition: 500ms padding, 200ms background-position;
 }
 
-a:hover {
+.document a:hover {
     background-position: 0 0;
     padding-left: 5px;
     padding-right: 5px;
 }
 
-img {
-    border-radius: 10px;
+/* __ Images __________________________________________________________________ */
+
+.document img {
+    border-radius: 15px;
     transition: all 0.3s;
+    max-height: 400px;
 }
 
-img:hover {
+.document img:hover {
     transform: scale(1.1);
 }
 
-hr {
+/* __ Separators ______________________________________________________________ */
+
+.document hr {
     border: none;
     border-top: 1px solid var(--border);
+}
+
+.document div {
+    background-color: var(--bg2);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 10px;
+}
+
+.document details {
+    background-color: var(--bg2);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 10px;
+}
+
+.document details[open]{
+    background-color: var(--highlightbg);
+    border: 1px solid var(--highlight);
+}
+
+/* __ Task list _______________________________________________________________ */
+
+/* Styles for each task list item */
+.document .task-list-item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding: 5px 0;
+}
+
+/* Styles for the checkbox inside each task list item */
+.document .task-list-item input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background-color: #00000000;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+}
+
+/* Styles when the checkbox is checked */
+.document .task-list-item input[type="checkbox"][checked]::before {
+    color: var(--highlight);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Styles for the checkbox when it's checked */
+.document .task-list-item input[type="checkbox"][checked] {
+    background-color: var(--highlight);
+    border-color: var(--highlightbg);
+}
+
+/* __ blockquote list _________________________________________________________ */
+
+.document blockquote {
+    border-left: 3px solid var(--border);
+    padding-left: 8px;
+}
+
+.document del:hover {
+    text-decoration: none;
 }
