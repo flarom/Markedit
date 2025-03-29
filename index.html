@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markedit</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="output"></div>
+    </div>
+
+    <textarea id="input"></textarea>
+    
+    <script src="script/md2html.js"></script>
+
+    <script>
+        document.getElementById("input").addEventListener("keydown", function(event) {
+            if (event.ctrlKey && event.key === "s") { // ctrl+s -  save
+                alert("save as .md");
+            }
+
+            if (event.ctrlKey && event.key === "s") { // ctrl+o -  open
+                alert("open .md file");
+            }
+            
+            if (event.ctrlKey && event.key === "b") {  // ctrl+b - bold
+                event.preventDefault();
+                insertTextAroundSelection(this, "**", "**");
+            }
+        
+            if (event.ctrlKey && event.key === "i") { // ctrl+i - italics
+                event.preventDefault();
+                insertTextAroundSelection(this, "*", "*");
+            }
+        });
+        
+        function insertTextAroundSelection(textarea, prefix, suffix) {
+            let start = textarea.selectionStart;
+            let end = textarea.selectionEnd;
+            let text = textarea.value;
+            let selectedText = text.substring(start, end);
+            
+            textarea.value = text.substring(0, start) + prefix + selectedText + suffix + text.substring(end);
+            
+            textarea.selectionStart = textarea.selectionEnd = start + prefix.length + selectedText.length + suffix.length;
+        }
+        </script>
+</body>
+</html>

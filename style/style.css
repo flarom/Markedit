@@ -1,0 +1,128 @@
+:root {
+    --bg: #242424;
+    --bg2: #393939;
+    --text: #dddddd;
+    --text2: #ffffff;
+    --border: #666666;
+
+    --link: #44caff;
+    --linkbg: #44caff33;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    border-radius: 15px;
+    padding: 10px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 2;
+    margin-bottom: 10px;
+    height: 100vh;
+}
+
+textarea {
+    position: fixed;
+    font-size: large;
+    bottom: 0;
+    left: 10vw;
+    width: 76vw;
+    height: 75px;
+    background-color: var(--bg2);
+    color: var(--text2);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    outline: none;
+    resize: none;
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color:var(--text2);
+}
+
+blockquote {
+    border-left: 3px solid var(--border);
+    padding-left: 8px;
+}
+
+table, th, td {
+    border: 1px solid var(--border);
+    border-collapse: collapse;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    overflow: scroll;
+}
+
+tr {
+    transition: all 0.3s;
+}
+
+tr:hover {
+    background-color: var(--bg2);
+}
+
+code {
+    background-color: var(--bg2);
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+}
+
+pre {
+    background-color: var(--bg2);
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+}
+
+pre code {
+    background-color: none;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 0;
+    border: none;
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+    border-radius: 3px;
+
+    background: linear-gradient(90deg, var(--linkbg) 0%, var(--linkbg) 50%, #00000000 50%, #00000000 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: 500ms padding, 200ms background-position;
+}
+
+a:hover {
+    background-position: 0 0;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+img {
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+img:hover {
+    transform: scale(1.1);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+}
