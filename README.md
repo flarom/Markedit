@@ -24,6 +24,7 @@ Markdown Text Editor powered by [Showdown](https://github.com/showdownjs/showdow
     - [Ignoring Markdown formatting](#ignoring-markdown-formatting)
 - [Markedit syntax](#markedit-syntax)
     - [Icons](#icons)
+    - [Document Styling](#document-styling)
 
 ---
 
@@ -251,17 +252,29 @@ You can insert icons from [Google Material Symbols](https://fonts.google.com/ico
 <icon>warning</icon> This feature is not supported by GitHub.
 
 ### Document styling
-#### Changing document colors
-You can use comments to set custom colors to the UI.
+
+You can use comments to set custom colors to the document.
 ```
-<!-- style.color.--bg=#272822 -->
-<!-- style.color.--bg2=#2E2E2E -->
-<!-- style.color.--bg2-transparent=#272822 -->
-<!-- style.color.--text=#F8F8F2 -->
-<!-- style.color.--text2=#A6E22E -->
-<!-- style.color.--border=#66D9EF -->
-<!-- style.color.--highlight=#F92672 -->
-<!-- style.color.--highlightbg=#49483E -->
+<!-- document.style.--bg=#272822 -->
+<!-- document.style.--bg2=#2E2E2E -->
+<!-- document.style.--bg2-transparent=#272822 -->
+<!-- document.style.--text=#F8F8F2 -->
+<!-- document.style.--text2=#A6E22E -->
+<!-- document.style.--border=#66D9EF -->
+<!-- document.style.--highlight=#F92672 -->
+<!-- document.style.--highlightbg=#49483E -->
 
 Monokai Theme
+```
+
+You can use comments to set custom typefaces to the document.
+```
+<!-- document.style.--font=Arial -->
+<!-- document.style.--font-title=Consolas -->
+<!-- document.style.--font-mono=monospace -->
+```
+
+You can also change the document width.
+```
+<!-- document.style.--max-document-width=1200px -->
 ```
