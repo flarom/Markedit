@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
 
 :root {
+    /* colors */
     --bg: #242424;
     --bg2: #393939;
     --bg2-transparent: #39393988;
@@ -9,12 +10,20 @@
     --border: #666666;
     --highlight: #44caff;
     --highlightbg: #44caff33;
+
+    /* sizes */
+    --max-document-width: 1200px;
+
+    /* typefaces */
+    --font-general: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-title: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-mono: monospace;
 }
 
 body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font);
     overflow: hidden;
 }
 
@@ -22,13 +31,14 @@ body {
     border-radius: 15px;
     padding: 10px;
     width: 90%;
-    max-width: 1200px;
+    max-width: var(--max-document-width);
     margin: 0 auto;
     z-index: 2;
     margin-bottom: 10px;
     height: calc(100vh - 100px);
     padding-bottom: 200px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x:hidden;
 }
 
 #bottom-bar {
@@ -84,6 +94,7 @@ textarea {
 .document h5,
 .document h6 {
     color: var(--text2);
+    font-family: var(--font-title);
     transition: all 0.3s;
 }
 
@@ -91,11 +102,11 @@ textarea {
 
 .document table {
     width: 100%;
-    overflow: hidden;
     border-collapse: separate;
     border-spacing: 0;
     border-radius: 10px;
     border-bottom: 2px solid var(--border);
+    overflow: scroll;
 }
 
 .document th,
@@ -136,12 +147,13 @@ textarea {
 /* __ Codeblock _______________________________________________________________ */
 
 .document code {
-    font-size: larger;
+    /* font-size: larger; */
     background-color: var(--bg2);
     padding-left: 4px;
     padding-right: 4px;
     border-radius: 2px;
     border: 1px solid var(--border);
+    font-family: var(--font-mono);
 }
 
 .document pre {
@@ -150,6 +162,7 @@ textarea {
     border-radius: 5px;
     border: 1px solid var(--border);
     border-bottom: 2px solid var(--border);
+    overflow: scroll;
 }
 
 .document pre code {
@@ -185,10 +198,6 @@ textarea {
     border-radius: 15px;
     transition: all 0.3s;
     max-height: 400px;
-}
-
-.document img:hover {
-    transform: scale(1.1);
 }
 
 @media screen and (max-width: 500px) {
