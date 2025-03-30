@@ -6367,3 +6367,23 @@ function updateMarkdown(markdown) {
   var converter = new showdown.Converter();
   output.innerHTML = converter.makeHtml(markdown);
 }
+
+function loadMarkdownFile(filePath, divId) {
+  fetch(filePath)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Falha ao carregar o arquivo');
+          }
+          return response.text();
+      })
+      .then(markdownContent => {
+          updateMarkdown(markdownContent);
+
+          // Converte o Markdown para HTML
+          var converter = new showdown.Converter();
+          document.getElementById(divId).innerHTML = converter.makeHtml(markdownContent);
+      })
+      .catch(error => {
+          console.error("Erro ao carregar o arquivo Markdown: ", error);
+      });
+}

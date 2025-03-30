@@ -7,17 +7,48 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
+    <div class="card" id="initial-card">
+        <img src="resources/logo.png" alt="Markedit logo" width="100%">
+        <a href=""><icon>upload</icon>Open file</a><br>
+        <a href=""><icon>download</icon>Save file</a>
+        <hr>
+        <a target="_blank" href="help.html"><icon>docs</icon>Documentation</a><br>
+        <a target="_blank" href="https://github.com/flarom/Markedit"><icon>code</icon>GitHub Repository</a>
+    </div>
+
     <div id="output" class="document">
         <!-- markdown here -->
     </div>
+    
     <div id="bottom-bar">
         <textarea id="input" placeholder="Aa"></textarea>
-        <a href="help.html" target="_blank">help</a>
+        <button id="toggle-card"><icon>menu</icon></button>
     </div>
 
     <script src="script/md2html.js"></script>
 
     <script>
+        const card = document.getElementById("initial-card");
+        const textarea = document.getElementById("input");
+        const toggleButton = document.getElementById("toggle-card");
+
+        // hide initial popup when typing
+        textarea.addEventListener("input", function() {
+            if (this.value.trim() !== "") { 
+                card.style.display = "none"; 
+            }
+        });
+
+        // toggle visibility on the initial popup
+        toggleButton.addEventListener("click", function() {
+            if (card.style.display === "none") {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        // keyboard shortcuts
         document.getElementById("input").addEventListener("keydown", function(event) {
             if (event.ctrlKey && event.key === "s") { // ctrl+s -  save
                 alert("save as .md");
@@ -37,7 +68,8 @@
                 insertTextAroundSelection(this, "*", "*");
             }
         });
-        
+
+        // insert text arround selection
         function insertTextAroundSelection(textarea, prefix, suffix) {
             let start = textarea.selectionStart;
             let end = textarea.selectionEnd;
@@ -48,6 +80,8 @@
             
             textarea.selectionStart = textarea.selectionEnd = start + prefix.length + selectedText.length + suffix.length;
         }
+
+        input.focus();
     </script>
 </body>
 </html>
