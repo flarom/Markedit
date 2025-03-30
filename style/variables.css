@@ -1,0 +1,31 @@
+/*
+    Use `<!-- document.style.{--var-name}=[value] -->` on your document to modify values.
+
+    Eg. `<!-- document.style.--text-fg=#ff0000 -->` will make document text red.
+*/
+
+:root {
+    /* colors */
+    --doc-bg: #242424;/*........................................... document background color                 */
+    --box-bg: #393939;/*........................................... boxes/divs/containers background color    */
+    --text-fg: #dddddd;/*.......................................... normal text foreground color              */
+    --title-fg: #ffffff;/*......................................... title background color                    */
+    --border: #666666;/*........................................... boxes/divs/containers outline color       */
+    --highlight: #fff569;/*........................................ interactive objects color                 */
+    --highlight-bg: #fff56933;/*................................... interactive objects background color      */
+
+    /* gui */
+    --gui-fg: #ffffff;/*........................................... graphical user interface text color       */
+    --gui-bg: #39393999;/*......................................... graphical user interface background color */
+    --gui-border: #666666;/*....................................... graphical user interface outline color    */
+    --gui-highlight: #fff569;/*.................................... interactive objects color                 */
+    --gui-highlight-bg: #fff56933;/*............................... interactive objects background color      */
+
+    /* sizes */
+    --document-width: 1200px;/*...................................... width of the document                     */
+
+    /* typefaces */
+    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;/*....... normal text typeface                      */
+    --font-title: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;/*. titles typeface                           */
+    --font-mono: monospace;/*........................................ codeblock typeface                        */
+}

@@ -1,28 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
 
-:root {
-    /* colors */
-    --bg: #242424;
-    --bg2: #393939;
-    --bg2-transparent: #39393999;
-    --text: #dddddd;
-    --text2: #ffffff;
-    --border: #666666;
-    --highlight: #fff569;
-    --highlightbg: #fff56933;
-
-    /* sizes */
-    --max-document-width: 1200px;
-
-    /* typefaces */
-    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --font-title: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --font-mono: monospace;
-}
-
 body {
-    background-color: var(--bg);
-    color: var(--text);
+    background-color: var(--doc-bg);
+    color: var(--text-fg);
     font-family: var(--font);
     overflow: hidden;
 }
@@ -31,7 +11,7 @@ body {
     border-radius: 15px;
     padding: 10px;
     width: 90%;
-    max-width: var(--max-document-width);
+    max-width: var(document-width);
     margin: 0 auto;
     z-index: 2;
     margin-bottom: 10px;
@@ -44,10 +24,11 @@ body {
 .card {
     display: none;
 
-    background-color: var(--bg2-transparent);
+    color: var(--gui-fg);
+    background-color: var(--gui-bg);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--gui-border);
     padding: 10px;
     width: 300px;
 
@@ -56,15 +37,6 @@ body {
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-}
-
-#bottom-bar button {
-    color: var(--text);
-    background-color: #00000000;
-    border-radius: 50%;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
 }
 
 #bottom-bar {
@@ -79,11 +51,11 @@ body {
 }
 
 kbd {
-    background-color: var(--highlightbg);
-    border: 1px solid var(--highlight);
-    border-bottom: 3px solid var(--highlight);
+    background-color: var(--gui-highlight-bg);
+    border: 1px solid var(--gui-highlight);
+    border-bottom: 3px solid var(--gui-highlight);
     border-radius: 5px;
-    color: var(--highlight);
+    color: var(--gui-highlight);
     padding: 3px;
     padding-bottom: 0px;
 }
@@ -92,10 +64,10 @@ textarea {
     font-size: larger;
     width: 75%;
     height: 75px;
-    background-color: var(--bg2-transparent);
+    background-color: var(--gui-bg);
     backdrop-filter: blur(10px);
-    color: var(--text2);
-    border: 1px solid var(--border);
+    color: var(--gui-fg);
+    border: 1px solid var(--gui-border);
     border-radius: 15px;
     outline: none;
     resize: none;
@@ -117,7 +89,7 @@ icon {
     font-size: initial;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--highlight);
-    background-color: var(--highlightbg);
+    background-color: var(--highlight-bg);
     padding-left: 5px;
     padding-right: 5px;
     vertical-align: initial;
@@ -139,19 +111,19 @@ icon {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--gui-border);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--border);
+  background: var(--gui-border);
 }
 
 /* __ Selection _______________________________________________________________ */
 ::selection,
 ::-moz-selection {
-    color: var(--highlight);
-    background: var(--highlightbg);
+    color: var(--gui-highlight);
+    background: var(--gui-highlight-bg);
 }
 
 /* __ Titles __________________________________________________________________ */
@@ -162,7 +134,7 @@ icon {
 .document h4,
 .document h5,
 .document h6 {
-    color: var(--text2);
+    color: var(--title-fg);
     font-family: var(--font-title);
     transition: all 0.3s;
 }
@@ -185,7 +157,7 @@ icon {
 }
 
 .document th {
-    background-color: var(--bg2);
+    background-color: var(--box-bg);
     font-weight: 100;
 }
 
@@ -210,14 +182,14 @@ icon {
 }
 
 .document tr:hover {
-    background-color: var(--bg2);
+    background-color: var(--box-bg);
 }
 
 /* __ Codeblock _______________________________________________________________ */
 
 .document code {
     /* font-size: larger; */
-    background-color: var(--bg2);
+    background-color: var(--box-bg);
     padding-left: 4px;
     padding-right: 4px;
     border-radius: 2px;
@@ -226,7 +198,7 @@ icon {
 }
 
 .document pre {
-    background-color: var(--bg2);
+    background-color: var(--box-bg);
     padding: 4px;
     border-radius: 5px;
     border: 1px solid var(--border);
@@ -251,7 +223,7 @@ icon {
     text-decoration: none;
     border-radius: 3px;
 
-    background: linear-gradient(90deg, var(--highlightbg) 0%, var(--highlightbg) 50%, #00000000 50%, #00000000 100%);
+    background: linear-gradient(90deg, var(--highlight-bg) 0%, var(--highlight-bg) 50%, #00000000 50%, #00000000 100%);
     background-size: 200% 100%;
     background-position: 100% 0;
     transition: 500ms padding, 200ms background-position;
@@ -271,6 +243,15 @@ icon {
     background-position: 0 0;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.card button,
+.card a {
+    color: var(--gui-highlight);
+    background: linear-gradient(90deg, var(--gui-highlight-bg) 0%, var(--gui-highlight-bg) 50%, #00000000 50%, #00000000 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: 500ms padding, 200ms background-position;
 }
 
 /* __ Images __________________________________________________________________ */
@@ -297,14 +278,14 @@ icon {
 }
 
 .document div {
-    background-color: var(--bg2);
+    background-color: var(--box-bg);
     border-radius: 10px;
     border: 1px solid var(--border);
     padding: 10px;
 }
 
 .document details {
-    background-color: var(--bg2);
+    background-color: var(--box-bg);
     border-radius: 10px;
     border: 1px solid var(--border);
     padding: 10px;
@@ -315,7 +296,7 @@ icon {
 }
 
 .document details[open]{
-    background-color: var(--highlightbg);
+    background-color: var(--highlight-bg);
     border: 1px solid var(--highlight);
 }
 
@@ -355,7 +336,7 @@ icon {
 /* Styles for the checkbox when it's checked */
 .document .task-list-item input[type="checkbox"][checked] {
     background-color: var(--highlight);
-    border-color: var(--highlightbg);
+    border-color: var(--highlight-bg);
 }
 
 /* __ blockquote list _________________________________________________________ */

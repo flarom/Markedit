@@ -1,4 +1,5 @@
-# Markedit
+<img alt="Markedit logo" src="resources/logo.png" width="400">
+
 Markdown Text Editor powered by [Showdown](https://github.com/showdownjs/showdown)
 
 ---
@@ -255,16 +256,20 @@ You can insert icons from [Google Material Symbols](https://fonts.google.com/ico
 
 You can use comments to set custom colors to the document.
 ```
-<!-- document.style.--bg=#272822 -->
-<!-- document.style.--bg2=#2E2E2E -->
-<!-- document.style.--bg2-transparent=#272822 -->
-<!-- document.style.--text=#F8F8F2 -->
-<!-- document.style.--text2=#A6E22E -->
+<!-- document.style.--doc-bg=#272822 -->
+<!-- document.style.--box-bg=#2E2E2E -->
+<!-- document.style.--text-fg=#F8F8F2 -->
+<!-- document.style.--title-fg=#A6E22E -->
 <!-- document.style.--border=#66D9EF -->
 <!-- document.style.--highlight=#F92672 -->
-<!-- document.style.--highlightbg=#49483E -->
+<!-- document.style.--highlight-bg=#49483E -->
+<!-- document.style.--gui-fg=#A6E22E -->
+<!-- document.style.--gui-bg=#272822 -->
+<!-- document.style.--gui-border=#66D9EF -->
+<!-- document.style.--gui-highlight=#F92672 -->
+<!-- document.style.--gui-highlight-bg=#49483E -->
 
-Monokai Theme
+# Monokai Theme
 ```
 
 You can use comments to set custom typefaces to the document.
