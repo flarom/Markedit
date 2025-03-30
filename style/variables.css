@@ -1,7 +1,8 @@
 /*
     Use `<!-- document.style.{--var-name}=[value] -->` on your document to modify values.
 
-    Eg. `<!-- document.style.--text-fg=#ff0000 -->` will make document text red.
+    e.g. `<!-- document.style.--text-fg=#ff0000 -->` will make document text red.
+         `<!-- document.style.--wallpaper=url("https://picsum.photos/1920") -->` will draw a wallpaper.
 */
 
 :root {
@@ -13,6 +14,9 @@
     --border: #666666;/*........................................... boxes/divs/containers outline color       */
     --highlight: #fff569;/*........................................ interactive objects color                 */
     --highlight-bg: #fff56933;/*................................... interactive objects background color      */
+
+    /* wallpaper */
+    --wallpaper-src: url('');/*...................................... wallpaper url/file path                   */
 
     /* gui */
     --gui-fg: #ffffff;/*........................................... graphical user interface text color       */

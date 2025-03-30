@@ -5,13 +5,17 @@ body {
     color: var(--text-fg);
     font-family: var(--font);
     overflow: hidden;
+    background-image: var(--wallpaper-src) !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .document {
     border-radius: 15px;
     padding: 10px;
     width: 90%;
-    max-width: var(document-width);
+    max-width: var(--document-width);
     margin: 0 auto;
     z-index: 2;
     margin-bottom: 10px;
@@ -68,6 +72,7 @@ textarea {
     backdrop-filter: blur(10px);
     color: var(--gui-fg);
     border: 1px solid var(--gui-border);
+    border-top: 4px solid var(--gui-border);
     border-radius: 15px;
     outline: none;
     resize: none;

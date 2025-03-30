@@ -272,6 +272,11 @@ You can use comments to set custom colors to the document.
 # Monokai Theme
 ```
 
+You can use comments to set a wallpaper.
+```
+<!-- document.style.--wallpaper=url("https://picsum.photos/1920") -->
+```
+
 You can use comments to set custom typefaces to the document.
 ```
 <!-- document.style.--font=Arial -->

@@ -6338,7 +6338,7 @@ function updateMarkdown(markdown) {
       return placeholder;
   });
 
-  let variableRegex = /<!--\s*document\.style\.(--[\w-]+)\s*=\s*([\w#().%]+)\s*-->/g;
+  let variableRegex = /<!--\s*document\.style\.(--[\w-]+)\s*=\s*(.+?)\s*-->/g;
   
   let activeVariables = new Set();
   markdown = markdown.replace(variableRegex, (match, varName, value) => {
