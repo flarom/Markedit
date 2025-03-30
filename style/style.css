@@ -8,8 +8,8 @@
     --text: #dddddd;
     --text2: #ffffff;
     --border: #666666;
-    --highlight: #44caff;
-    --highlightbg: #44caff33;
+    --highlight: #fff569;
+    --highlightbg: #fff56933;
 
     /* sizes */
     --max-document-width: 1200px;
@@ -121,6 +121,30 @@ icon {
     padding-left: 5px;
     padding-right: 5px;
     vertical-align: initial;
+}
+
+/* __ Scrollbar _______________________________________________________________ */
+/* ____ Firefox ________________________________________________________________*/
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+/* ____ Chromium ______________________________________________________________ */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border);
 }
 
 /* __ Titles __________________________________________________________________ */
