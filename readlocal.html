@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markedit Document</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <kbd>Esc</kbd> or <kbd>Ctrl</kbd> + <kbd>W</kbd> to close this document
+    <div class="document" id="output">
+        
+    </div>
+
+    <script src="script/md2html.js"></script>
+
+    <script>
+        loadMarkdownFile(GetURLParameter('doc'), 'output');
+
+        function GetURLParameter(sParam)
+        {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) 
+            {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] == sParam) 
+                {
+                    return sParameterName[1];
+                }
+            }
+        }
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") { 
+                close();
+            }
+        });
+    </script>
+</body>
+</html>

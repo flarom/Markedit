@@ -42,6 +42,8 @@ body {
 }
 
 .card {
+    display: none;
+
     background-color: var(--bg2-transparent);
     backdrop-filter: blur(10px);
     border-radius: 10px;
@@ -54,10 +56,6 @@ body {
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-}
-
-.card h1 {
-    font-weight: 100;
 }
 
 #bottom-bar button {
@@ -78,6 +76,16 @@ body {
     z-index: 3;
     display: flex;
     align-content: center;
+}
+
+kbd {
+    background-color: var(--highlightbg);
+    border: 1px solid var(--highlight);
+    border-bottom: 3px solid var(--highlight);
+    border-radius: 5px;
+    color: var(--highlight);
+    padding: 3px;
+    padding-bottom: 0px;
 }
 
 textarea {
@@ -205,6 +213,7 @@ icon {
 
 /* __ Links ___________________________________________________________________ */
 
+.card button,
 .card a,
 .document a {
     color: var(--highlight);
@@ -215,8 +224,17 @@ icon {
     background-size: 200% 100%;
     background-position: 100% 0;
     transition: 500ms padding, 200ms background-position;
+
+    outline: none;
+    border: none;
+    font-size: medium;
+    cursor: pointer;
 }
 
+.card button:focus,
+.card a:focus,
+.document a:focus,
+.card button:hover,
 .card a:hover,
 .document a:hover {
     background-position: 0 0;

@@ -6327,20 +6327,17 @@ document.addEventListener("DOMContentLoaded", function () {
   updateMarkdown(input.value);
 });
 
-// Lista das variáveis CSS alteradas dinamicamente
 let modifiedVariables = new Set();
 
 function updateMarkdown(markdown) {
   let codeBlocks = [];
-  let placeholder = "\uFFFC"; // Placeholder para armazenar blocos de código
+  let placeholder = "\uFFFC";
 
-  // Remove temporariamente blocos de código para evitar interpretação errada
   markdown = markdown.replace(/(```[\s\S]*?```|`[^`\n]+`)/g, match => {
       codeBlocks.push(match);
       return placeholder;
   });
 
-  // Expressão para encontrar os comentários que alteram variáveis CSS
   let variableRegex = /<!--\s*document\.style\.(--[\w-]+)\s*=\s*([\w#().%]+)\s*-->/g;
   
   let activeVariables = new Set();
@@ -6348,10 +6345,9 @@ function updateMarkdown(markdown) {
       document.documentElement.style.setProperty(varName, value);
       activeVariables.add(varName);
       modifiedVariables.add(varName);
-      return ''; // Remove os comentários do Markdown final
+      return '';
   });
 
-  // Remove variáveis que não estão mais no Markdown
   modifiedVariables.forEach(varName => {
       if (!activeVariables.has(varName)) {
           document.documentElement.style.removeProperty(varName);
@@ -6359,11 +6355,9 @@ function updateMarkdown(markdown) {
       }
   });
 
-  // Restaurar os blocos de código
   let i = 0;
   markdown = markdown.replace(/\uFFFC/g, () => codeBlocks[i++]);
 
-  // Converter Markdown para HTML
   var converter = new showdown.Converter();
   output.innerHTML = converter.makeHtml(markdown);
 }
@@ -6372,7 +6366,7 @@ function loadMarkdownFile(filePath, divId) {
   fetch(filePath)
       .then(response => {
           if (!response.ok) {
-              throw new Error('Falha ao carregar o arquivo');
+              throw new Error('failed to load file');
           }
           return response.text();
       })
@@ -6384,6 +6378,6 @@ function loadMarkdownFile(filePath, divId) {
           document.getElementById(divId).innerHTML = converter.makeHtml(markdownContent);
       })
       .catch(error => {
-          console.error("Erro ao carregar o arquivo Markdown: ", error);
+          console.error("failed to load file: ", error);
       });
 }

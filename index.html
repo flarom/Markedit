@@ -7,69 +7,112 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
+    <!-- inital card -->
     <div class="card" id="initial-card">
+        <kbd>F1</kbd> show/hide menu
         <img src="resources/logo.png" alt="Markedit logo" width="100%">
-        <a href=""><icon>upload</icon>Open file</a><br>
-        <a href=""><icon>download</icon>Save file</a>
+        <div id="focus-group">
+            <a href="" id="initial-card-first"><icon>folder_open</icon>Open file</a><br>
+            <hr>
+            <a target="_blank" href="readlocal.html?doc=README.md"><icon>docs</icon>Documentation</a><br>
+            <a target="_blank" href="readlocal.html?doc=SHORTCUTS.md"><icon>keyboard_keys</icon>Keyboard shortcuts</a><br>
+            <a target="_blank" href="https://github.com/flarom/Markedit"><icon>code</icon>GitHub Repository</a><br>
+        </div>
+    </div>
+    <!-- file menu -->
+    <div class="card" id="file-menu">
+        <kbd>Alt</kbd>+<kbd>F</kbd> File
         <hr>
-        <a target="_blank" href="help.html"><icon>docs</icon>Documentation</a><br>
-        <a target="_blank" href="https://github.com/flarom/Markedit"><icon>code</icon>GitHub Repository</a>
+        <div id="focus-group">
+            <button onclick="window.open('index.html', '_blank').focus()" id="file-menu-first"><icon>draft</icon>New</button><br>
+        </div>
+    </div>
+    <!-- insert menu -->
+    <div class="card" id="insert-menu">
+        <kbd>Alt</kbd>+<kbd>I</kbd> Insert
+        <hr>
+        <div id="focus-group">
+            <a href="" id="insert-menu-first">Table</a><br>
+            <a href="">Image</a><br>
+            <a href="">Embeded URL</a><br>
+        </div>
     </div>
 
     <div id="output" class="document">
-        <!-- markdown here -->
+        <!-- markdown will render here -->
     </div>
     
     <div id="bottom-bar">
         <textarea id="input" placeholder="Aa"></textarea>
-        <button id="toggle-card"><icon>menu</icon></button>
     </div>
 
     <script src="script/md2html.js"></script>
+    <script src="script/focusgroups.js"></script>
+    <script src="filemanagement.js"></script>
 
     <script>
-        const card = document.getElementById("initial-card");
         const textarea = document.getElementById("input");
-        const toggleButton = document.getElementById("toggle-card");
+        const cards = document.querySelectorAll(".card"); 
 
-        // hide initial popup when typing
         textarea.addEventListener("input", function() {
             if (this.value.trim() !== "") { 
-                card.style.display = "none"; 
+                cards.forEach(card => {
+                    card.style.display = "none";
+                });
             }
         });
 
-        // toggle visibility on the initial popup
-        toggleButton.addEventListener("click", function() {
+        function toggleCardVisibility(cardId) {
+            const card = document.getElementById(cardId);
+            const input = document.getElementById("input");
+
             if (card.style.display === "none") {
                 card.style.display = "block";
+                
+                const firstElement = document.getElementById(cardId + "-first"); 
+                if (firstElement) firstElement.focus();
             } else {
                 card.style.display = "none";
+                input.focus();
             }
-        });
+        }
 
         // keyboard shortcuts
-        document.getElementById("input").addEventListener("keydown", function(event) {
-            if (event.ctrlKey && event.key === "s") { // ctrl+s -  save
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "F1") {  // F1 - show/hide initial menu
+                event.preventDefault();
+                toggleCardVisibility("initial-card");
+            }
+
+            if (event.altKey && event.key === "f") { // Alt + F - show/hide file menu
+                event.preventDefault();
+                toggleCardVisibility("file-menu");
+            }
+
+            if (event.altKey && event.key === "i") {  // Alt + I - show/hide insert menu
+                event.preventDefault();
+                toggleCardVisibility("insert-menu");
+            }
+
+            if (event.ctrlKey && event.key === "s") { // Ctrl + S - save
                 alert("save as .md");
             }
 
-            if (event.ctrlKey && event.key === "o") { // ctrl+o -  open
+            if (event.ctrlKey && event.key === "o") { // Ctrl + O - open
                 alert("open .md file");
             }
-            
-            if (event.ctrlKey && event.key === "b") {  // ctrl+b - bold
+
+            if (event.ctrlKey && event.key === "b") {  // Ctrl + B - bold
                 event.preventDefault();
                 insertTextAroundSelection(this, "**", "**");
             }
-        
-            if (event.ctrlKey && event.key === "i") { // ctrl+i - italic
+
+            if (event.ctrlKey && event.key === "i") { // Ctrl + I - italic
                 event.preventDefault();
                 insertTextAroundSelection(this, "*", "*");
             }
         });
 
-        // insert text arround selection
         function insertTextAroundSelection(textarea, prefix, suffix) {
             let start = textarea.selectionStart;
             let end = textarea.selectionEnd;
@@ -81,7 +124,8 @@
             textarea.selectionStart = textarea.selectionEnd = start + prefix.length + selectedText.length + suffix.length;
         }
 
-        input.focus();
+        textarea.focus();
+        document.getElementById("initial-card").style.display = "block";
     </script>
 </body>
 </html>
