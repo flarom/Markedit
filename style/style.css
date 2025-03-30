@@ -124,7 +124,7 @@ icon {
 }
 
 /* __ Scrollbar _______________________________________________________________ */
-/* ____ Firefox ________________________________________________________________*/
+/* ____ Firefox _______________________________________________________________ */
 * {
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
@@ -145,6 +145,13 @@ icon {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--border);
+}
+
+/* __ Selection _______________________________________________________________ */
+::selection,
+::-moz-selection {
+    color: var(--highlight);
+    background: var(--highlightbg);
 }
 
 /* __ Titles __________________________________________________________________ */
