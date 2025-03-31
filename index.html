@@ -13,11 +13,11 @@
         <kbd>F1</kbd> show/hide menu
         <img src="resources/logo.png" alt="Markedit logo" width="100%">
         <div id="focus-group">
-            <a href="" id="initial-card-first"><icon>folder_open</icon>Open file</a><br>
+            <a href="" id="initial-card-first"><icon>folder_open</icon>Open file</a>
             <hr>
-            <a target="_blank" href="readlocal.html?doc=README.md"><icon>docs</icon>Documentation</a><br>
-            <a target="_blank" href="readlocal.html?doc=SHORTCUTS.md"><icon>keyboard_keys</icon>Keyboard shortcuts</a><br>
-            <a target="_blank" href="https://github.com/flarom/Markedit"><icon>code</icon>GitHub Repository</a><br>
+            <a target="_blank" href="readlocal.html?doc=README.md"><icon>docs</icon>Documentation</a>
+            <a target="_blank" href="readlocal.html?doc=SHORTCUTS.md"><icon>keyboard_keys</icon>Keyboard shortcuts</a>
+            <a target="_blank" href="https://github.com/flarom/Markedit"><icon>code</icon>GitHub Repository</a>
         </div>
     </div>
     <!-- file menu -->
@@ -25,7 +25,9 @@
         <kbd>Alt</kbd>+<kbd>F</kbd> File
         <hr>
         <div id="focus-group">
-            <button onclick="window.open('index.html', '_blank').focus()" id="file-menu-first"><icon>draft</icon>New</button><br>
+            <button id="file-menu-first" onclick="fileNew()">New document</button>
+            <button onclick="fileSave()">Save</button>
+            <button onclick="fileOpen()">Open</button>
         </div>
     </div>
     <!-- insert menu -->
@@ -33,9 +35,11 @@
         <kbd>Alt</kbd>+<kbd>I</kbd> Insert
         <hr>
         <div id="focus-group">
-            <a href="" id="insert-menu-first">Table</a><br>
-            <a href="">Image</a><br>
-            <a href="">Embeded URL</a><br>
+            <button id="insert-menu-first" onclick="insertTable()">Table</button>
+            <button onclick="insertEmbUrl()">Embed URL</button>
+            <button onclick="insertImage()">Image</button>
+            <button onclick="insertSummary()">Summary</button>
+            <button onclick="insertDetails()">Drawer</button>
         </div>
     </div>
 
@@ -49,7 +53,8 @@
 
     <script src="script/md2html.js"></script>
     <script src="script/focusgroups.js"></script>
-    <script src="filemanagement.js"></script>
+    <script src="script/file.js"></script>
+    <script src="script/insert.js"></script>
 
     <script>
         const textarea = document.getElementById("input");

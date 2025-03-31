@@ -54,6 +54,13 @@ body {
     align-content: center;
 }
 
+#focus-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    align-items: start;
+}
+
 kbd {
     background-color: var(--gui-highlight-bg);
     border: 1px solid var(--gui-highlight);
@@ -237,6 +244,8 @@ icon {
     border: none;
     font-size: medium;
     cursor: pointer;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .card button:focus,

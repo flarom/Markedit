@@ -2,11 +2,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const focusGroups = document.querySelectorAll(".card #focus-group");
     
     focusGroups.forEach(focusGroup => {
-        const focusableElements = Array.from(focusGroup.querySelectorAll("a"));
+        const focusableElements = Array.from(focusGroup.querySelectorAll("a, button"));
         const textarea = document.getElementById("input");
 
         focusGroup.addEventListener("keydown", function (event) {
             const currentIndex = focusableElements.indexOf(document.activeElement);
+
+            if (focusableElements.length === 0) return;
 
             if (event.key === "ArrowDown") {
                 event.preventDefault();
@@ -27,8 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (event.key === "Escape") {
                 textarea.focus();
-                const allCards = document.querySelectorAll(".card");
-                allCards.forEach(card => {
+                document.querySelectorAll(".card").forEach(card => {
                     card.style.display = "none";
                 });
             }
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function focusFirstItem(menuId) {
-        const firstElement = document.querySelector(`#${menuId} #focus-group a`);
+        const firstElement = document.querySelector(`#${menuId} #focus-group a, #${menuId} #focus-group button`);
         if (firstElement) {
             firstElement.focus();
         }
