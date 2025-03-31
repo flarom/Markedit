@@ -9,8 +9,17 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    opacity: 0%;
+    animation: fade-in 1s forwards;
 }
 
+@keyframes fade-in {
+    0% { opacity: 0;}
+    100% {opacity: 100%;}
+}
+
+.short-document,
 .document {
     border-radius: 15px;
     padding: 10px;
@@ -18,9 +27,12 @@ body {
     max-width: var(--document-width);
     margin: 0 auto;
     z-index: 2;
-    margin-bottom: 10px;
+}
+
+.document {
     height: calc(100vh - 100px);
     padding-bottom: 200px;
+    margin-bottom: 10px;
     overflow-y: scroll;
     overflow-x:hidden;
 }
@@ -229,8 +241,7 @@ icon {
 /* __ Links ___________________________________________________________________ */
 
 .card button,
-.card a,
-.document a {
+a {
     color: var(--highlight);
     text-decoration: none;
     border-radius: 3px;
@@ -248,6 +259,10 @@ icon {
     padding-right: 0px;
 }
 
+.short-document button:hover,
+.short-document a:hover,
+.short-document button:focus,
+.short-document a:focus,
 .card button:focus,
 .card a:focus,
 .document a:focus,
@@ -259,6 +274,8 @@ icon {
     padding-right: 5px;
 }
 
+.short-document button,
+.short-document a,
 .card button,
 .card a {
     color: var(--gui-highlight);
@@ -270,6 +287,7 @@ icon {
 
 /* __ Images __________________________________________________________________ */
 
+.short-document img,
 .document img {
     border-radius: 15px;
     transition: all 0.3s;
@@ -291,11 +309,13 @@ icon {
     border-top: 1px solid var(--border);
 }
 
+div.docdiv,
 .document div {
     background-color: var(--box-bg);
     border-radius: 10px;
     border: 1px solid var(--border);
     padding: 10px;
+    margin-top: 5px;
 }
 
 .document details {
