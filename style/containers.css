@@ -1,0 +1,11 @@
+.tiny-flex {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+}
+
+@media screen and (max-width: 500px) {
+    .tiny-flex {
+        display: block;
+    }
+}

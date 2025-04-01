@@ -8,14 +8,20 @@
     <link rel="stylesheet" href="style/variables.css">
 </head>
 <body>
+    <div id="output" class="document">
+        <!-- markdown will render here -->
+    </div>
+    
+    <div id="bottom-bar">
+        <textarea id="input" placeholder="Aa"></textarea>
+    </div>
+
     <!-- inital card -->
-    <div class="card" id="initial-card">
-        <kbd>F1</kbd> show/hide menu
+    <div class="card" id="initial-menu">
+        <kbd>F1</kbd> show menu
         <img src="resources/logo.png" alt="Markedit logo" width="100%">
         <div id="focus-group">
-            <a href="" id="initial-card-first"><icon>folder_open</icon>Open file</a>
-            <hr>
-            <a target="_blank" href="readlocal.html?doc=README.md"><icon>docs</icon>Documentation</a>
+            <a target="_blank" id="initial-menu-first" href="readlocal.html?doc=README.md"><icon>docs</icon>Documentation</a>
             <a target="_blank" href="readlocal.html?doc=resources/shortcuts.md"><icon>keyboard_keys</icon>Keyboard shortcuts</a>
             <a target="_blank" href="download.html"><icon>install_desktop</icon>Markedit Desktop</a>
             <a target="_blank" href="https://github.com/flarom/Markedit"><icon>code</icon>GitHub Repository</a>
@@ -44,34 +50,31 @@
         </div>
     </div>
 
-    <div id="output" class="document">
-        <!-- markdown will render here -->
-    </div>
-    
-    <div id="bottom-bar">
-        <textarea id="input" placeholder="Aa"></textarea>
-    </div>
-
     <script src="script/md2html.js"></script>
     <script src="script/focusgroups.js"></script>
     <script src="script/file.js"></script>
     <script src="script/insert.js"></script>
+    <script src="script/inputhelper.js"></script>
 
     <script>
         const textarea = document.getElementById("input");
         const cards = document.querySelectorAll(".card"); 
 
-        textarea.addEventListener("input", function() {
-            if (this.value.trim() !== "") { 
-                cards.forEach(card => {
-                    card.style.display = "none";
-                });
-            }
-        });
+        function hideCards(){
+            cards.forEach(card => {
+                card.style.display = "none";
+            });
+        }
 
-        function toggleCardVisibility(cardId) {
+        function hideCardsAndFocus(){
+            hideCards();
+            textarea.focus();
+        }
+
+        function showCard(cardId) {
+            hideCards(); // hide all cards before showing a new one
+
             const card = document.getElementById(cardId);
-            const input = document.getElementById("input");
 
             if (card.style.display === "none") {
                 card.style.display = "block";
@@ -80,73 +83,45 @@
                 if (firstElement) firstElement.focus();
             } else {
                 card.style.display = "none";
-                input.focus();
+                textarea.focus();
             }
         }
-
-        document.getElementById('input').addEventListener('keydown', function(e) {
-            if (e.key == 'Tab') {
-              e.preventDefault();
-              var start = this.selectionStart;
-              var end = this.selectionEnd;
-          
-              this.value = this.value.substring(0, start) +
-                "\t" + this.value.substring(end);
-          
-              this.selectionStart =
-                this.selectionEnd = start + 1;
-            }
-        });
 
         // keyboard shortcuts
         document.addEventListener("keydown", function(event) {
             if (event.key === "F1") {  // F1 - show/hide initial menu
                 event.preventDefault();
-                toggleCardVisibility("initial-card");
+                showCard("initial-menu");
             }
 
             if (event.altKey && event.key === "f") { // Alt + F - show/hide file menu
                 event.preventDefault();
-                toggleCardVisibility("file-menu");
+                showCard("file-menu");
             }
 
             if (event.altKey && event.key === "i") {  // Alt + I - show/hide insert menu
                 event.preventDefault();
-                toggleCardVisibility("insert-menu");
+                showCard("insert-menu");
             }
 
             if (event.ctrlKey && event.key === "s") { // Ctrl + S - save
-                alert("save as .md");
+                fileSave();
             }
 
             if (event.ctrlKey && event.key === "o") { // Ctrl + O - open
-                alert("open .md file");
-            }
-
-            if (event.ctrlKey && event.key === "b") {  // Ctrl + B - bold
-                event.preventDefault();
-                insertTextAroundSelection(this, "**", "**");
-            }
-
-            if (event.ctrlKey && event.key === "i") { // Ctrl + I - italic
-                event.preventDefault();
-                insertTextAroundSelection(this, "*", "*");
+                fileOpen();
             }
         });
 
-        function insertTextAroundSelection(textarea, prefix, suffix) {
-            let start = textarea.selectionStart;
-            let end = textarea.selectionEnd;
-            let text = textarea.value;
-            let selectedText = text.substring(start, end);
-            
-            textarea.value = text.substring(0, start) + prefix + selectedText + suffix + text.substring(end);
-            
-            textarea.selectionStart = textarea.selectionEnd = start + prefix.length + selectedText.length + suffix.length;
-        }
+        // hide cards when typing
+        textarea.addEventListener("input", function() {
+            if (this.value.trim() !== "") { 
+                hideCards();
+            }
+        });
 
+        showCard('initial-menu');
         textarea.focus();
-        document.getElementById("initial-card").style.display = "block";
     </script>
 </body>
 </html>

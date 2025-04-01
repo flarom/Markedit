@@ -12,8 +12,8 @@
     --text-fg: #dddddd;/*.......................................... normal text foreground color              */
     --title-fg: #ffffff;/*......................................... title background color                    */
     --border: #666666;/*........................................... boxes/divs/containers outline color       */
-    --highlight: #fff569;/*........................................ interactive objects color                 */
-    --highlight-bg: #fff56933;/*................................... interactive objects background color      */
+    --highlight: #44caff;/*........................................ interactive objects color                 */
+    --highlight-bg: #44caff33;/*................................... interactive objects background color      */
 
     /* wallpaper */
     --wallpaper-src: url('');/*...................................... wallpaper url/file path                   */
@@ -22,8 +22,8 @@
     --gui-fg: #ffffff;/*........................................... graphical user interface text color       */
     --gui-bg: #39393999;/*......................................... graphical user interface background color */
     --gui-border: #666666;/*....................................... graphical user interface outline color    */
-    --gui-highlight: #fff569;/*.................................... interactive objects color                 */
-    --gui-highlight-bg: #fff56933;/*............................... interactive objects background color      */
+    --gui-highlight: #44caff;/*.................................... interactive objects color                 */
+    --gui-highlight-bg: #44caff33;/*............................... interactive objects background color      */
 
     /* sizes */
     --document-width: 1200px;/*...................................... width of the document                     */

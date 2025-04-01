@@ -287,15 +287,14 @@ a {
 
 /* __ Images __________________________________________________________________ */
 
-.short-document img,
-.document img {
+img {
     border-radius: 15px;
     transition: all 0.3s;
     max-height: 400px;
 }
 
 @media screen and (max-width: 500px) {
-    .document img {
+    img {
         width: 100%;
         max-height: initial;
     }
