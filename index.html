@@ -1,53 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markedit</title>
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/variables.css">
+    <link rel="stylesheet" href="style/loader.css">
+    <link rel="icon" type="image/x-icon" href="resources/favicon.png">
+    <script src="script/loader.js"></script>
 </head>
+
 <body>
     <div id="output" class="document">
         <!-- markdown will render here -->
     </div>
-    
+
     <div id="bottom-bar">
         <textarea id="input" placeholder="Aa"></textarea>
     </div>
 
-    <!-- inital card -->
-    <div class="card" id="initial-menu">
-        <kbd>F1</kbd> show menu
-        <img src="resources/logo.png" alt="Markedit logo" width="100%">
-        <div id="focus-group">
-            <a target="_blank" id="initial-menu-first" href="readlocal.html?doc=README.md"><icon>docs</icon>Documentation</a>
-            <a target="_blank" href="readlocal.html?doc=resources/shortcuts.md"><icon>keyboard_keys</icon>Keyboard shortcuts</a>
-            <a target="_blank" href="download.html"><icon>install_desktop</icon>Markedit Desktop</a>
-            <a target="_blank" href="https://github.com/flarom/Markedit"><icon>code</icon>GitHub Repository</a>
+    <!-- menus -->
+    <div>
+        <!-- inital card -->
+        <div class="card" id="initial-menu">
+            <kbd>F1</kbd> show menu
+            <img src="resources/logo.png" alt="Markedit logo" width="100%">
+            <div id="focus-group">
+                <a target="_blank" id="initial-menu-first" href="readlocal.html?doc=README.md">
+                    <icon>docs</icon>Documentation
+                </a>
+                <a target="_blank" href="readlocal.html?doc=resources/shortcuts.md">
+                    <icon>keyboard_keys</icon>Keyboard shortcuts
+                </a>
+                <a target="_blank" href="download.html">
+                    <icon>install_desktop</icon>Markedit Desktop
+                </a>
+                <a target="_blank" href="https://github.com/flarom/Markedit">
+                    <icon>code</icon>GitHub Repository
+                </a>
+            </div>
+        </div>
+        <!-- file menu -->
+        <div class="card" id="file-menu">
+            <kbd>Alt</kbd>+<kbd>F</kbd> File
+            <hr>
+            <div id="focus-group">
+                <button id="file-menu-first" onclick="fileNew()">New document</button>
+                <button onclick="fileSave()">Save</button>
+                <button onclick="fileOpen()">Open</button>
+            </div>
+        </div>
+        <!-- insert menu -->
+        <div class="card" id="insert-menu">
+            <kbd>Alt</kbd>+<kbd>I</kbd> Insert
+            <hr>
+            <div id="focus-group">
+                <button id="insert-menu-first" onclick="insertTable()">Table</button>
+                <button onclick="insertEmbUrl()">Embed URL</button>
+                <button onclick="insertImage()">Image</button>
+                <button onclick="insertSummary()">Summary</button>
+                <button onclick="insertDetails()">Drawer</button>
+                <button onclick="showCard('insert-style-menu')">Document style</button>
+            </div>
+        </div>
+
+        <div class="card" id="insert-style-menu">
+            Document Style
+            <hr>
+            <div id="focus-group">
+                Document
+                <button onclick="insertStyle('--doc-bg')" id="insert-style-menu-first">Document background</button>
+                <button onclick="insertStyle('--box-bg')">Box background</button>
+                <button onclick="insertStyle('--text-fg')">Text color</button>
+                <button onclick="insertStyle('--title-fg')">Title color</button>
+                <button onclick="insertStyle('--border')">Border color</button>
+                <button onclick="insertStyle('--highlight')">Highlight color</button>
+                <button onclick="insertStyle('--highlight-bg')">Highlight background</button>
+                <button onclick="insertStyle('--document-width')">Document width</button>
+
+                Typefaces
+                <button onclick="insertStyle('--font')">Text font</button>
+                <button onclick="insertStyle('--font-title')">Title font</button>
+                <button onclick="insertStyle('--font-mono')">Code font</button>
+            </div>
         </div>
     </div>
-    <!-- file menu -->
-    <div class="card" id="file-menu">
-        <kbd>Alt</kbd>+<kbd>F</kbd> File
-        <hr>
-        <div id="focus-group">
-            <button id="file-menu-first" onclick="fileNew()">New document</button>
-            <button onclick="fileSave()">Save</button>
-            <button onclick="fileOpen()">Open</button>
-        </div>
-    </div>
-    <!-- insert menu -->
-    <div class="card" id="insert-menu">
-        <kbd>Alt</kbd>+<kbd>I</kbd> Insert
-        <hr>
-        <div id="focus-group">
-            <button id="insert-menu-first" onclick="insertTable()">Table</button>
-            <button onclick="insertEmbUrl()">Embed URL</button>
-            <button onclick="insertImage()">Image</button>
-            <button onclick="insertSummary()">Summary</button>
-            <button onclick="insertDetails()">Drawer</button>
-        </div>
+
+    <div class="loader">
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+        <div class="circle three"></div>
     </div>
 
     <script src="script/md2html.js"></script>
@@ -58,15 +102,15 @@
 
     <script>
         const textarea = document.getElementById("input");
-        const cards = document.querySelectorAll(".card"); 
+        const cards = document.querySelectorAll(".card");
 
-        function hideCards(){
+        function hideCards() {
             cards.forEach(card => {
                 card.style.display = "none";
             });
         }
 
-        function hideCardsAndFocus(){
+        function hideCardsAndFocus() {
             hideCards();
             textarea.focus();
         }
@@ -78,8 +122,8 @@
 
             if (card.style.display === "none") {
                 card.style.display = "block";
-                
-                const firstElement = document.getElementById(cardId + "-first"); 
+
+                const firstElement = document.getElementById(cardId + "-first");
                 if (firstElement) firstElement.focus();
             } else {
                 card.style.display = "none";
@@ -88,7 +132,7 @@
         }
 
         // keyboard shortcuts
-        document.addEventListener("keydown", function(event) {
+        document.addEventListener("keydown", function (event) {
             if (event.key === "F1") {  // F1 - show/hide initial menu
                 event.preventDefault();
                 showCard("initial-menu");
@@ -114,8 +158,8 @@
         });
 
         // hide cards when typing
-        textarea.addEventListener("input", function() {
-            if (this.value.trim() !== "") { 
+        textarea.addEventListener("input", function () {
+            if (this.value.trim() !== "") {
                 hideCards();
             }
         });
@@ -124,4 +168,5 @@
         textarea.focus();
     </script>
 </body>
+
 </html>

@@ -14,6 +14,10 @@ body {
     animation: fade-in 1s forwards;
 }
 
+* {
+    transition: background-color 0.5s, color 0.5s;
+}
+
 @keyframes fade-in {
     0% { opacity: 0;}
     100% {opacity: 100%;}
@@ -24,6 +28,7 @@ body {
     border-radius: 15px;
     padding: 10px;
     width: 90%;
+    transition: max-width 1s;
     max-width: var(--document-width);
     margin: 0 auto;
     z-index: 2;
@@ -287,13 +292,19 @@ a {
 
 /* __ Images __________________________________________________________________ */
 
+.document iframe,
 img {
     border-radius: 15px;
     transition: all 0.3s;
     max-height: 400px;
 }
 
+.document iframe {
+    border:1px solid var(--border);
+}
+
 @media screen and (max-width: 500px) {
+    .document iframe,
     img {
         width: 100%;
         max-height: initial;

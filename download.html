@@ -8,26 +8,37 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/variables.css">
     <link rel="stylesheet" href="style/containers.css">
+    <link rel="icon" type="image/x-icon" href="resources/favicon.png">
+    <link rel="stylesheet" href="style/loader.css">
+    <script src="script/loader.js"></script>
 </head>
 
 <body>
+    <div class="loader">
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+        <div class="circle three"></div>
+    </div>
     <div class="short-document">
         <kbd>Esc</kbd> or <kbd>Ctrl</kbd> + <kbd>W</kbd> to close this document
     </div>
     <div class="short-document tiny-flex">
         <div>
             <h1 style=>Turn your ideas into beautifully formatted documents.</h1>
-            <p style=>Markedit offers a fluid and powerful writing experience, allowing you to edit and format documents with ease.</p>
+            <p style=>Markedit offers a fluid and powerful writing experience, allowing you to edit and format documents
+                with ease.</p>
 
             <a href="index.html" style="margin-right: 20px;">Markedit Web</a>
             <a href="#download-list">Markedit Desktop</a>
         </div>
         <div>
-            <img src="resources/downloadpage-appshot.png" alt="App Screenshot" style="border-radius: 2px; box-shadow: 0px 5px 25px #00000055;">
+            <img src="resources/downloadpage-appshot.png" alt="App Screenshot"
+                style="border-radius: 2px; box-shadow: 0px 5px 25px #00000055;">
         </div>
     </div>
     <div id="download-list" class="short-document">Loading...</div>
-    <div class="short-document"><a target="_blank" href="https://github.com/flarom/Markedit/releases">Older versions</a></div>
+    <div class="short-document"><a target="_blank" href="https://github.com/flarom/Markedit/releases">Older versions</a>
+    </div>
 
     <script>
         const repo = "flarom/Markedit";
@@ -62,17 +73,18 @@
 
                 document.getElementById("download-list").innerHTML = html;
             })
-        .catch(error => {
-            console.error("Error fetching releases:", error);
-            document.getElementById("download-list").innerHTML = "<icon>warning</icon>That's awkward... No release found.";
-        });
+            .catch(error => {
+                console.error("Error fetching releases:", error);
+                document.getElementById("download-list").innerHTML = "<icon>warning</icon>That's awkward... No release found.";
+            });
 
-        document.addEventListener("keydown", function(event) {
-            if (event.key === "Escape") { 
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
                 close();
             }
         });
     </script>
+
 </body>
 
 </html>

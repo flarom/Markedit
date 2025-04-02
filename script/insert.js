@@ -51,18 +51,28 @@ function insertSummary(){
     let tocLines = [];
     
     headers.forEach(header => {
-        const level = parseInt(header.tagName.substring(1)); // Obtém o número do h1, h2, h3...
+        const level = parseInt(header.tagName.substring(1));
         const text = header.textContent.trim();
-        const id = text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, ""); // Gera um ID baseado no texto
-        header.id = id; // Define o ID para o cabeçalho
+        const id = text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
+        header.id = id;
 
-        const indent = " ".repeat((level - 1) * 4); // Indenta conforme o nível do título
+        const indent = " ".repeat((level - 1) * 4);
         tocLines.push(`${indent}- [${text}](#${id})`);
     });
 
     if (tocLines.length > 0) {
-        insert(tocLines.join("\n")); // Junta as linhas corretamente antes de inserir
+        insert(tocLines.join("\n"));
     }
+}
+
+function insertStyle(cssVar){
+    let prefix = "<!-- document.style.";
+    let value = prompt("Value for " + cssVar + ":");
+    let suffix = "-->";
+
+    if(value === null || value.trim() === "") return;
+
+    insert(prefix + cssVar + "=" + value + suffix);
 }
 
 function getMdTable(width, height, cellsize) {
