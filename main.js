@@ -9,6 +9,7 @@ app.whenReady().then(() => {
     height: 700,
     fullscreen: true,
     autoHideMenuBar: true,
+    icon: path.join(__dirname, "resources", "favicon.png"),
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true
