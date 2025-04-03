@@ -292,6 +292,7 @@ a {
 
 /* __ Images __________________________________________________________________ */
 
+.document video,
 .document iframe,
 img {
     border-radius: 15px;

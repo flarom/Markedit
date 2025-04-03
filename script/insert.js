@@ -1,10 +1,9 @@
 function insertTable() {
-    let width = parseInt(prompt("Table width:"), 10);
-    let height = parseInt(prompt("Table height:"), 10);
-    let cellsize = parseInt(prompt("Cell size:"), 10);
+    let width = parseInt(prompt("Table width:","2" ), 10);
+    let height = parseInt(prompt("Table height:","2" ), 10);
+    let cellsize = parseInt(prompt("Cell size:","5" ), 10);
 
-    if (isNaN(width) || isNaN(height) || isNaN(cellsize) || width < 1 || height < 1 || cellsize < 1) {
-        alert("Invalid input. Please enter positive numbers.");
+    if (isNaN(width) || isNaN(height) || isNaN(cellsize) || width < 1 || height < 1 || cellsize < 3) {
         return;
     }
 
@@ -13,8 +12,8 @@ function insertTable() {
 }
 
 function insertImage(){
-    let src = prompt("Image URL/File path:");
-    let alt = prompt("Brief image description:");
+    let src = prompt("Image URL/File path:"); if(src === null || src.trim() === "") return;
+    let alt = prompt("Brief image description:"); if(alt === null || alt.trim() === "") alt = "No alt text provided.";
 
     let mdimg = "!["+alt+"]("+src+")";
 
@@ -22,8 +21,8 @@ function insertImage(){
 }
 
 function insertEmbUrl(){
-    let label = prompt("Website name:");
-    let url = prompt(label + "'s URL:")
+    let label = prompt("Website name:"); if(label === null || label.trim() === "") label = "Website";
+    let url = prompt(label + "'s URL:"); if(url === null || url.trim() === "") return;
 
     let mdurl = "["+label+"]("+url+")";
 
@@ -75,15 +74,12 @@ function insertStyle(cssVar){
     insert(prefix + cssVar + "=" + value + suffix);
 }
 
-function getMdTable(width, height, cellsize) {
-    let cell = " ".repeat(cellsize);
-    let separator = ":".padEnd(cellsize, "-");
-    
-    let header = "|" + (cell + "|").repeat(width) + "\n";
-    let separatorRow = "|" + (separator + "|").repeat(width) + "\n";
-    let rows = (("|" + (cell + "|").repeat(width) + "\n").repeat(height));
+function insertPrompt(prefix, suffix, question){
+    let ins = prompt(question);
 
-    return header + separatorRow + rows;
+    if(ins === null || ins.trim() === "") return;
+
+    insert(prefix + ins + suffix);
 }
 
 function insert(string){
@@ -99,4 +95,34 @@ function insert(string){
     textarea.selectionStart = textarea.selectionEnd = start + string.length;
 
     textarea.focus();
+}
+
+function getMdTable(width, height, cellsize) {
+    let cell = " ".repeat(cellsize);
+    let separator = ":".padEnd(cellsize, "-");
+    
+    let header = "|" + (cell + "|").repeat(width) + "\n";
+    let separatorRow = "|" + (separator + "|").repeat(width) + "\n";
+    let rows = (("|" + (cell + "|").repeat(width) + "\n").repeat(height));
+
+    return header + separatorRow + rows;
+}
+
+function insertYTVideo(){
+    let prefix = `<iframe width="560" height="315" src="`;
+    let value = formatYouTubeEmbed(prompt("YouTube URL:"));
+    let suffix = `" title="YouTube video player" allowfullscreen></iframe>`;
+
+    insert(prefix + value + suffix);
+}
+
+function formatYouTubeEmbed(url) {
+    let regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/;
+    let match = url.match(regex);
+    
+    if (match && match[1]) {
+        return `https://www.youtube.com/embed/${match[1]}`;
+    } else {
+        return "Unknown";
+    }
 }

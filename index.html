@@ -60,9 +60,10 @@
                 <button id="insert-menu-first" onclick="insertTable()">Table</button>
                 <button onclick="insertEmbUrl()">Embed URL</button>
                 <button onclick="insertImage()">Image</button>
+                <button onclick="showCard('insert-media-menu')">Media<icon>arrow_right</icon></button>
                 <button onclick="insertSummary()">Summary</button>
                 <button onclick="insertDetails()">Drawer</button>
-                <button onclick="showCard('insert-style-menu')">Document style</button>
+                <button onclick="showCard('insert-style-menu')">Document style<icon>arrow_right</icon></button>
             </div>
         </div>
 
@@ -84,6 +85,18 @@
                 <button onclick="insertStyle('--font')">Text font</button>
                 <button onclick="insertStyle('--font-title')">Title font</button>
                 <button onclick="insertStyle('--font-mono')">Code font</button>
+            </div>
+        </div>
+
+        <div class="card" id="insert-media-menu">
+            Media
+            <hr>
+            <div id="focus-group">
+                HTML 5
+                <button onclick="insertPrompt(`<audio controls><source src='`, `'></audio>`, `Audio URL:`)">Audio</button>
+                <button onclick="insertPrompt(`<video width='100%' height='500' controls><source src='`, `'></video>`, `Video URL:`)" id="insert-media-menu-first">Video</button>
+                Iframe
+                <button onclick="insertYTVideo()">YouTube Player</button>
             </div>
         </div>
     </div>
