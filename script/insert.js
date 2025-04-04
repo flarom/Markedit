@@ -30,7 +30,7 @@ function insertEmbUrl(){
 }
 
 function insertDetails(){
-    let label = prompt("Drawer name:");
+    let label = prompt("Drawer name:"); if(label === null || label.trim() === "") label = "Click to expand";
 
     let htmldetails =
     "<details><summary>"+label+"</summary>\n"+
@@ -109,7 +109,7 @@ function getMdTable(width, height, cellsize) {
 }
 
 function insertYTVideo(){
-    let prefix = `<iframe width="560" height="315" src="`;
+    let prefix = `<iframe width="100%" height="315" src="`;
     let value = formatYouTubeEmbed(prompt("YouTube URL:"));
     let suffix = `" title="YouTube video player" allowfullscreen></iframe>`;
 
@@ -124,5 +124,5 @@ function formatYouTubeEmbed(url) {
         return `https://www.youtube.com/embed/${match[1]}`;
     } else {
         return "Unknown";
-    }
+    } 
 }

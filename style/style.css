@@ -79,6 +79,7 @@ body {
 }
 
 kbd {
+    display: inline-block;
     background-color: var(--gui-highlight-bg);
     border: 1px solid var(--gui-highlight);
     border-bottom: 3px solid var(--gui-highlight);
@@ -86,6 +87,7 @@ kbd {
     color: var(--gui-highlight);
     padding: 3px;
     padding-bottom: 0px;
+    transform: translateY(-2px);
 }
 
 textarea {
@@ -151,8 +153,8 @@ icon {
 /* __ Selection _______________________________________________________________ */
 ::selection,
 ::-moz-selection {
-    color: var(--gui-highlight);
-    background: var(--gui-highlight-bg);
+    color: var(--doc-bg);
+    background: var(--gui-highlight);
 }
 
 /* __ Titles __________________________________________________________________ */

@@ -47,9 +47,9 @@
             <kbd>Alt</kbd>+<kbd>F</kbd> File
             <hr>
             <div id="focus-group">
-                <button id="file-menu-first" onclick="fileNew()">New document</button>
-                <button onclick="fileSave()">Save</button>
-                <button onclick="fileOpen()">Open</button>
+                <button onclick="fileNew()" id="file-menu-first">New document</button>
+                <button onclick="fileSave()">Save <kbd>Ctrl</kbd>+<kbd>S</kbd></button>
+                <button onclick="fileOpen()">Open <kbd>Ctrl</kbd>+<kbd>O</kbd></button>
             </div>
         </div>
         <!-- insert menu -->
@@ -57,13 +57,26 @@
             <kbd>Alt</kbd>+<kbd>I</kbd> Insert
             <hr>
             <div id="focus-group">
-                <button id="insert-menu-first" onclick="insertTable()">Table</button>
-                <button onclick="insertEmbUrl()">Embed URL</button>
+                <button onclick="insertTable()" id="insert-menu-first">Table</button>
+                <button onclick="insertEmbUrl()">Embed URL <kbd>Ctrl</kbd>+<kbd>K</kbd></button>
                 <button onclick="insertImage()">Image</button>
                 <button onclick="showCard('insert-media-menu')">Media<icon>arrow_right</icon></button>
                 <button onclick="insertSummary()">Summary</button>
                 <button onclick="insertDetails()">Drawer</button>
                 <button onclick="showCard('insert-style-menu')">Document style<icon>arrow_right</icon></button>
+            </div>
+        </div>
+        <!-- format menu -->
+        <div class="card" id="format-menu">
+            <kbd>Alt</kbd>+<kbd>O</kbd> Format
+            <hr>
+            <div id="focus-group">
+                <button onclick="formatBold()" id="format-menu-first">Bold <kbd>Ctrl</kbd>+<kbd>B</kbd></button>
+                <button onclick="formatItalic()">Italic <kbd>Ctrl</kbd>+<kbd>I</kbd></button>
+                <button onclick="formatUnderline()">Underline <kbd>Ctrl</kbd>+<kbd>U</kbd></button>
+                <button onclick="formatStriketrough()">Striketrough</button>
+                <button onclick="formatSup()">Superscript <kbd>Ctrl</kbd>+<kbd>.</kbd></button>
+                <button onclick="formatSub()">Subscript <kbd>Ctrl</kbd>+<kbd>,</kbd></button>
             </div>
         </div>
 
@@ -93,13 +106,15 @@
             <hr>
             <div id="focus-group">
                 HTML 5
-                <button onclick="insertPrompt(`<audio controls><source src='`, `'></audio>`, `Audio URL:`)">Audio</button>
-                <button onclick="insertPrompt(`<video width='100%' height='500' controls><source src='`, `'></video>`, `Video URL:`)" id="insert-media-menu-first">Video</button>
+                <button onclick="insertPrompt(`<audio controls><source src='`, `'></audio>`, `Audio URL:`)" id="insert-media-menu-first" >Audio</button>
+                <button onclick="insertPrompt(`<video width='100%' height='500' controls><source src='`, `'></video>`, `Video URL:`)">Video</button>
                 Iframe
                 <button onclick="insertYTVideo()">YouTube Player</button>
             </div>
         </div>
     </div>
+
+    <div id="emoji-suggestions" class="card" style="display: none; position: absolute;"></div>
 
     <div class="loader">
         <div class="circle one"></div>
@@ -111,6 +126,7 @@
     <script src="script/focusgroups.js"></script>
     <script src="script/file.js"></script>
     <script src="script/insert.js"></script>
+    <script src="script/format.js"></script>
     <script src="script/inputhelper.js"></script>
 
     <script>
@@ -146,27 +162,71 @@
 
         // keyboard shortcuts
         document.addEventListener("keydown", function (event) {
-            if (event.key === "F1") {  // F1 - show/hide initial menu
+            // __ navigation __________________________________________________
+            if (event.key === "F1") {  // F1 - show initial menu
                 event.preventDefault();
                 showCard("initial-menu");
             }
 
-            if (event.altKey && event.key === "f") { // Alt + F - show/hide file menu
+            if (event.altKey && event.key === "f") { // Alt + F - show file menu
                 event.preventDefault();
                 showCard("file-menu");
             }
 
-            if (event.altKey && event.key === "i") {  // Alt + I - show/hide insert menu
+            if (event.altKey && event.key === "i") {  // Alt + I - show insert menu
                 event.preventDefault();
                 showCard("insert-menu");
             }
 
+            if (event.altKey && event.key === "o") { // Alt + O - show format menu
+                event.preventDefault();
+                showCard("format-menu");
+            }
+
+            // __ file ________________________________________________________
+
             if (event.ctrlKey && event.key === "s") { // Ctrl + S - save
+                event.preventDefault();
                 fileSave();
             }
 
             if (event.ctrlKey && event.key === "o") { // Ctrl + O - open
+                event.preventDefault();
                 fileOpen();
+            }
+
+            // __ insert ______________________________________________________
+
+            if (event.ctrlKey && event.key === "k") { // Ctrl + K - insert URL
+                event.preventDefault();
+                insertEmbUrl();
+            }
+
+            // __ format ______________________________________________________
+
+            if (event.ctrlKey && event.key === "b") { // Ctrl + B - bold text
+                event.preventDefault();
+                formatBold();
+            }
+
+            if (event.ctrlKey && event.key === "i") { // Ctrl + I - italic text
+                event.preventDefault();
+                formatItalic();
+            }
+
+            if (event.ctrlKey && event.key === "u") { // Ctrl + U - underlined text
+                event.preventDefault();
+                formatUnderline();
+            }
+
+            if (event.ctrlKey && event.key === ".") { // Ctrl + . - sup text
+                event.preventDefault();
+                formatSup();
+            }
+
+            if (event.ctrlKey && event.key === ",") { // Ctrl + , - sub text
+                event.preventDefault();
+                formatSub();
             }
         });
 
