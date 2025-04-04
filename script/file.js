@@ -81,3 +81,38 @@ function setDocumentTitleFromFileName(filename){
     const nameWithoutExtension = filename.replace(/\.[^/.]+$/, "");
     setDocumentTitle(nameWithoutExtension);
 }
+
+function autoSave() {
+    const textarea = document.getElementById("input");
+    if (!textarea) return;
+
+    const content = textarea.value;
+    const title = getDocumentTitle();
+
+    if (title) {
+        document.cookie = `${title}=${encodeURIComponent(content)}; max-age=604800`;
+    }
+}
+
+function loadFromCookies() {
+    const cookies = document.cookie.split("; ");
+    const textarea = document.getElementById("input");
+    if (!textarea) return;
+
+    for (let cookie of cookies) {
+        const [name, value] = cookie.split("=");
+        if (name === getDocumentTitle()) {
+            textarea.value = decodeURIComponent(value);
+            break;
+        }
+    }
+}
+
+let timer = 0;
+let interval = setInterval(() => {
+    timer++;
+    if (timer >= 10) {
+        autoSave();
+        timer = 0;
+    }
+}, 1000);
