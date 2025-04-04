@@ -29,8 +29,7 @@
             <kbd>F1</kbd> show menu
             <img src="resources/logo.png" alt="Markedit logo" width="100%">
             <div id="focus-group">
-                <button onclick="loadFromCookies()" id="initial-menu-first"><icon>history</icon> Load auto-save</button>
-                <a target="_blank" href="readlocal.html?doc=README.md">
+                <a target="_blank" href="readlocal.html?doc=README.md" id="initial-menu-first">
                     <icon>docs</icon>Documentation
                 </a>
                 <a target="_blank" href="readlocal.html?doc=resources/shortcuts.md">
@@ -52,6 +51,7 @@
                 <button onclick="fileNew()" id="file-menu-first">New document</button>
                 <button onclick="fileSave()">Save <kbd>Ctrl</kbd>+<kbd>S</kbd></button>
                 <button onclick="fileOpen()">Open <kbd>Ctrl</kbd>+<kbd>O</kbd></button>
+                <button onclick="loadFromCookies()">Load auto-save</button>
             </div>
         </div>
         <!-- insert menu -->
