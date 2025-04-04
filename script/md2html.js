@@ -2949,27 +2949,30 @@
         'zombie_woman': '\ud83e\udddf\u200d\u2640\ufe0f',
         'zzz': '\ud83d\udca4',
 
-        /* special emojis :P */
-        'atom': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/atom.png?v8">',
-        'basecamp': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/basecamp.png?v8">',
-        'basecampy': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/basecampy.png?v8">',
-        'bowtie': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/bowtie.png?v8">',
-        'electron': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/electron.png?v8">',
-        'feelsgood': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/feelsgood.png?v8">',
-        'finnadie': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/finnadie.png?v8">',
-        'goberserk': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/goberserk.png?v8">',
-        'godmode': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/godmode.png?v8">',
-        'hurtrealbad': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/hurtrealbad.png?v8">',
-        'neckbeard': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/neckbeard.png?v8">',
-        'octocat': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/octocat.png?v8">',
-        'rage1': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/rage1.png?v8">',
-        'rage2': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/rage2.png?v8">',
-        'rage3': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/rage3.png?v8">',
-        'rage4': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/rage4.png?v8">',
-        'shipit': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/shipit.png?v8">',
-        'suspect': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/suspect.png?v8">',
-        'trollface': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/trollface.png?v8">',
-        'showdown': '<img width="20" height="20" align="absmiddle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAS1BMVEX///8jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS3b1q3b1q3b1q3b1q3b1q3b1q3b1q3b1q0565CIAAAAGXRSTlMAQHCAYCCw/+DQwPCQUBAwoHCAEP+wwFBgS2fvBgAAAUZJREFUeAHs1cGy7BAUheFFsEDw/k97VTq3T6ge2EmdM+pvrP6Iwd74XV9Kb52xuMU4/uc1YNgZLFOeV8FGdhGrNk5SEgUyPxAEdj4LlMRDyhVAMVEa2M7TBSeVZAFPdqHgzSZJwPKgcLFLAooHDJo4EDCw4gAtBoJA5UFj4Ng5LOGLwVXZuoIlji/jeQHFk7+baHxrCjeUwB9+s88KndvlhcyBN5BSkYNQIVVb4pV+Npm7hhuKDs/uMP5KxT3WzSNNLIuuoDpMmuAVMruMSeDyQBi24DTr43LAY7ILA1QYaWkgfHzFthYYzg67SQsCbB8GhJUEGCtO9n0rSaCLxgJQjS/JSgMTg2eBDEHAJ+H350AsjYNYscrErgI2e/l+mdR967TCX/v6N0EhPECYCP0i+IAoYQOE8BogNhQMEMdrgAQWHaMAAGi5I5euoY9NAAAAAElFTkSuQmCC">'
+        /**
+         * special emojis :P 
+         * disabled, it messes up with the emoji menu
+         */
+        // 'atom': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/atom.png?v8">',
+        // 'basecamp': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/basecamp.png?v8">',
+        // 'basecampy': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/basecampy.png?v8">',
+        // 'bowtie': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/bowtie.png?v8">',
+        // 'electron': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/electron.png?v8">',
+        // 'feelsgood': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/feelsgood.png?v8">',
+        // 'finnadie': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/finnadie.png?v8">',
+        // 'goberserk': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/goberserk.png?v8">',
+        // 'godmode': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/godmode.png?v8">',
+        // 'hurtrealbad': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/hurtrealbad.png?v8">',
+        // 'neckbeard': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/neckbeard.png?v8">',
+        // 'octocat': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/octocat.png?v8">',
+        // 'rage1': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/rage1.png?v8">',
+        // 'rage2': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/rage2.png?v8">',
+        // 'rage3': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/rage3.png?v8">',
+        // 'rage4': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/rage4.png?v8">',
+        // 'shipit': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/shipit.png?v8">',
+        // 'suspect': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/suspect.png?v8">',
+        // 'trollface': '<img width="20" height="20" align="absmiddle" src="https://github.githubassets.com/images/icons/emoji/trollface.png?v8">',
+        // 'showdown': '<img width="20" height="20" align="absmiddle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAS1BMVEX///8jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS0jJS3b1q3b1q3b1q3b1q3b1q3b1q3b1q3b1q0565CIAAAAGXRSTlMAQHCAYCCw/+DQwPCQUBAwoHCAEP+wwFBgS2fvBgAAAUZJREFUeAHs1cGy7BAUheFFsEDw/k97VTq3T6ge2EmdM+pvrP6Iwd74XV9Kb52xuMU4/uc1YNgZLFOeV8FGdhGrNk5SEgUyPxAEdj4LlMRDyhVAMVEa2M7TBSeVZAFPdqHgzSZJwPKgcLFLAooHDJo4EDCw4gAtBoJA5UFj4Ng5LOGLwVXZuoIlji/jeQHFk7+baHxrCjeUwB9+s88KndvlhcyBN5BSkYNQIVVb4pV+Npm7hhuKDs/uMP5KxT3WzSNNLIuuoDpMmuAVMruMSeDyQBi24DTr43LAY7ILA1QYaWkgfHzFthYYzg67SQsCbB8GhJUEGCtO9n0rSaCLxgJQjS/JSgMTg2eBDEHAJ+H350AsjYNYscrErgI2e/l+mdR967TCX/v6N0EhPECYCP0i+IAoYQOE8BogNhQMEMdrgAQWHaMAAGi5I5euoY9NAAAAAElFTkSuQmCC">'
     };
 
     /**
@@ -6290,10 +6293,22 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     const input = document.getElementById("input");
-    const output = document.getElementById("output");
 
-    input.addEventListener("input", function () {
-        updateMarkdown(input.value);
+    const events = [
+        "input", "keydown", "keyup", "click",
+        "focus", "cut", "paste"
+    ];
+
+    events.forEach(eventName => {
+        input.addEventListener(eventName, () => {
+            updateMarkdown(input.value);
+        });
+    });
+
+    document.addEventListener("selectionchange", () => {
+        if (document.activeElement === input) {
+            updateMarkdown(input.value);
+        }
     });
 
     updateMarkdown(input.value);

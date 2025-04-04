@@ -8,6 +8,7 @@ function insertAround(prefix, suffix) {
     textarea.value = text.substring(0, start) + prefix + selectedText + suffix + text.substring(end);
     
     textarea.selectionStart = textarea.selectionEnd = start + prefix.length + selectedText.length;
+    updateMarkdown();
 }
 
 function formatBold(){

@@ -21,7 +21,7 @@ function insertImage(){
 }
 
 function insertEmbUrl(){
-    let label = prompt("Website name:"); if(label === null || label.trim() === "") label = "Website";
+    let label = prompt("Website name:"); if(label === null || label.trim() === "") return;
     let url = prompt(label + "'s URL:"); if(url === null || url.trim() === "") return;
 
     let mdurl = "["+label+"]("+url+")";
@@ -95,6 +95,7 @@ function insert(string){
     textarea.selectionStart = textarea.selectionEnd = start + string.length;
 
     textarea.focus();
+    updateMarkdown();
 }
 
 function getMdTable(width, height, cellsize) {

@@ -5,6 +5,7 @@
 | Navigation      | <kbd>Alt</kbd> + <kbd>F</kbd>  | Show file menu               |
 | Navigation      | <kbd>Alt</kbd> + <kbd>I</kbd>  | Show insert menu             |
 | Navigation      | <kbd>Alt</kbd> + <kbd>O</kbd>  | Show format menu             |
+| Navigation      | <kbd>Alt</kbd> + <kbd>;</kbd>  | Show emoji menu              |
 | File            | <kbd>Ctrl</kbd> + <kbd>S</kbd> | Save document                |
 | File            | <kbd>Ctrl</kbd> + <kbd>O</kbd> | Open document                |
 | Insert          | <kbd>Ctrl</kbd> + <kbd>K</kbd> | Insert embed URL             |

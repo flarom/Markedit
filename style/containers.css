@@ -4,6 +4,26 @@
     gap: 1px;
 }
 
+.emoji-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-height: 100px;
+    overflow: scroll;
+}
+
+.emoji-box button {
+    font-size: xx-large;
+    text-shadow: 3px 3px var(--border);
+}
+
+.emoji-search {
+    background-color: transparent;
+    color: var(--gui-fg);
+    border: none;
+    outline: none;
+}
+
 @media screen and (max-width: 500px) {
     .tiny-flex {
         display: block;

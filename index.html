@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markedit</title>
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/containers.css">
     <link rel="stylesheet" href="style/variables.css">
     <link rel="stylesheet" href="style/loader.css">
     <link rel="icon" type="image/x-icon" href="resources/favicon.png">
@@ -60,23 +61,11 @@
                 <button onclick="insertTable()" id="insert-menu-first">Table</button>
                 <button onclick="insertEmbUrl()">Embed URL <kbd>Ctrl</kbd>+<kbd>K</kbd></button>
                 <button onclick="insertImage()">Image</button>
-                <button onclick="showCard('insert-media-menu')">Media<icon>arrow_right</icon></button>
+                <button onclick="showCard('insert-emoji-menu')">Emoji <kbd>Alt</kbd>+<kbd>;</kbd></button>
+                <button onclick="showCard('insert-media-menu')">Media</button>
                 <button onclick="insertSummary()">Summary</button>
                 <button onclick="insertDetails()">Drawer</button>
-                <button onclick="showCard('insert-style-menu')">Document style<icon>arrow_right</icon></button>
-            </div>
-        </div>
-        <!-- format menu -->
-        <div class="card" id="format-menu">
-            <kbd>Alt</kbd>+<kbd>O</kbd> Format
-            <hr>
-            <div id="focus-group">
-                <button onclick="formatBold()" id="format-menu-first">Bold <kbd>Ctrl</kbd>+<kbd>B</kbd></button>
-                <button onclick="formatItalic()">Italic <kbd>Ctrl</kbd>+<kbd>I</kbd></button>
-                <button onclick="formatUnderline()">Underline <kbd>Ctrl</kbd>+<kbd>U</kbd></button>
-                <button onclick="formatStriketrough()">Striketrough</button>
-                <button onclick="formatSup()">Superscript <kbd>Ctrl</kbd>+<kbd>.</kbd></button>
-                <button onclick="formatSub()">Subscript <kbd>Ctrl</kbd>+<kbd>,</kbd></button>
+                <button onclick="showCard('insert-style-menu')">Document style</button>
             </div>
         </div>
 
@@ -112,9 +101,33 @@
                 <button onclick="insertYTVideo()">YouTube Player</button>
             </div>
         </div>
-    </div>
 
-    <div id="emoji-suggestions" class="card" style="display: none; position: absolute;"></div>
+        <div class="card" id="insert-emoji-menu">
+            Emojis
+            <hr>
+            <div id="focus-group">
+                <div style="display: flex;">
+                    <icon>search</icon>
+                    <input type="text" id="insert-emoji-menu-first" class="emoji-search" placeholder="Search for a emoji">
+                </div>
+                <div id="emojis" class="emoji-box" focus="false"></div>
+            </div>
+        </div>
+        
+        <!-- format menu -->
+        <div class="card" id="format-menu">
+            <kbd>Alt</kbd>+<kbd>O</kbd> Format
+            <hr>
+            <div id="focus-group">
+                <button onclick="formatBold()" id="format-menu-first">Bold <kbd>Ctrl</kbd>+<kbd>B</kbd></button>
+                <button onclick="formatItalic()">Italic <kbd>Ctrl</kbd>+<kbd>I</kbd></button>
+                <button onclick="formatUnderline()">Underline <kbd>Ctrl</kbd>+<kbd>U</kbd></button>
+                <button onclick="formatStriketrough()">Striketrough</button>
+                <button onclick="formatSup()">Superscript <kbd>Ctrl</kbd>+<kbd>.</kbd></button>
+                <button onclick="formatSub()">Subscript <kbd>Ctrl</kbd>+<kbd>,</kbd></button>
+            </div>
+        </div>
+    </div>
 
     <div class="loader">
         <div class="circle one"></div>
@@ -128,6 +141,7 @@
     <script src="script/insert.js"></script>
     <script src="script/format.js"></script>
     <script src="script/inputhelper.js"></script>
+    <script src="script/emojis.js"></script>
 
     <script>
         const textarea = document.getElementById("input");
@@ -181,6 +195,11 @@
             if (event.altKey && event.key === "o") { // Alt + O - show format menu
                 event.preventDefault();
                 showCard("format-menu");
+            }
+
+            if (event.altKey && event.key === ";") { // Alt + ; - show emoji menu
+                event.preventDefault();
+                showCard("insert-emoji-menu");
             }
 
             // __ file ________________________________________________________
