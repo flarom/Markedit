@@ -23,6 +23,21 @@ body {
     100% {opacity: 100%;}
 }
 
+@keyframes shine {
+    0% {
+        background-color: var(--gui-bg);
+        border-color: var(--gui-border);
+    }
+    50% {
+        background-color: var(--highlight-bg);
+        border-color: var(--highlight);
+    }
+    100% {
+        background-color: var(--gui-bg);
+        border-color: var(--gui-border);
+    }
+}
+
 .short-document,
 .document {
     border-radius: 15px;

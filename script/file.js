@@ -12,6 +12,8 @@ function fileSave(){
     const textarea = document.getElementById("input");
     if (!textarea) return;
 
+    blinkTextArea();
+
     const content = textarea.value;
     const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
 
@@ -82,15 +84,22 @@ function setDocumentTitleFromFileName(filename){
     setDocumentTitle(nameWithoutExtension);
 }
 
+const AUTOSAVE_KEY = "MarkeditAutosavedDocumentRaw";
+
+
 function autoSave() {
     const textarea = document.getElementById("input");
     if (!textarea) return;
 
     const content = textarea.value;
-    const title = getDocumentTitle();
 
-    if (title) {
-        document.cookie = `${title}=${encodeURIComponent(content)}; max-age=604800`;
+    if (content !== "") {
+        const encoded = encodeURIComponent(content);
+        document.cookie = `${AUTOSAVE_KEY}=${encoded}; max-age=604800; path=/`;
+
+        blinkTextArea();
+
+        console.log("Auto-saved, nya~ 💾💖");
     }
 }
 
@@ -101,18 +110,25 @@ function loadFromCookies() {
 
     for (let cookie of cookies) {
         const [name, value] = cookie.split("=");
-        if (name === getDocumentTitle()) {
-            textarea.value = decodeURIComponent(value);
+        if (name === AUTOSAVE_KEY) {
+            textarea.value = decodeURIComponent(value || "");
             break;
         }
     }
 }
 
-let timer = 0;
-let interval = setInterval(() => {
-    timer++;
-    if (timer >= 10) {
-        autoSave();
-        timer = 0;
+let timer = null;
+
+function startAutoSaveTimer() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(autoSave, 5000);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    const textarea = document.getElementById("input");
+    if (textarea) {
+        textarea.addEventListener("input", () => {
+            startAutoSaveTimer();
+        });
     }
-}, 1000);
+});

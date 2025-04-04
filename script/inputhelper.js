@@ -75,3 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+function blinkTextArea() {
+    textarea.style.animation = "none";
+    void textarea.offsetWidth;
+    textarea.style.animation = "shine 1s forwards";
+}
