@@ -99,7 +99,7 @@ function autoSave() {
 
         blinkTextArea();
 
-        console.log("Auto-saved, nya~ 💾💖");
+        console.log("autosaved as: " + content);
     }
 }
 
@@ -112,6 +112,7 @@ function loadFromCookies() {
         const [name, value] = cookie.split("=");
         if (name === AUTOSAVE_KEY) {
             textarea.value = decodeURIComponent(value || "");
+            updateMarkdown(textarea.value);
             break;
         }
     }
@@ -121,7 +122,7 @@ let timer = null;
 
 function startAutoSaveTimer() {
     if (timer) clearTimeout(timer);
-    timer = setTimeout(autoSave, 5000);
+    timer = setTimeout(autoSave, 1000);
 }
 
 window.addEventListener("DOMContentLoaded", () => {

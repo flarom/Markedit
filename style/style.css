@@ -24,17 +24,13 @@ body {
 }
 
 @keyframes shine {
-    0% {
+    0%, 100% {
         background-color: var(--gui-bg);
         border-color: var(--gui-border);
     }
     50% {
         background-color: var(--highlight-bg);
         border-color: var(--highlight);
-    }
-    100% {
-        background-color: var(--gui-bg);
-        border-color: var(--gui-border);
     }
 }
 
