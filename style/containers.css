@@ -5,8 +5,8 @@
 }
 
 .emoji-box {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.5rem;
     max-height: 300px;
     overflow: scroll;
@@ -16,6 +16,12 @@
 .emoji-box button {
     font-size: xx-large;
     text-shadow: 3px 3px var(--border);
+    transition: text-shadow 0.3s;
+}
+
+.emoji-box button:hover {
+    padding: 0;
+    text-shadow: 3px 3px var(--highlight);
 }
 
 .emoji-search {
