@@ -22,47 +22,56 @@
         <textarea id="input"></textarea>
     </div>
 
+    <div class="mobile-only">
+        <button title="Show main menu" onclick="showCard('initial-menu');" class="menu-button"><icon>stack</icon></button>
+    </div>
+
     <!-- menus -->
     <div>
         <!-- inital card -->
         <div class="card" id="initial-menu">
-            <kbd>F1</kbd> show menu
+            <div class="pc-only"><kbd>F1</kbd> show menu</div>
             <img src="resources/logo.png" alt="Markedit logo" width="100%">
             <div id="focus-group">
                 <a target="_blank" href="readlocal.html?doc=README.md" id="initial-menu-first">
                     <icon>docs</icon>Documentation
                 </a>
-                <a target="_blank" href="readlocal.html?doc=resources/shortcuts.md">
-                    <icon>keyboard_keys</icon>Keyboard shortcuts
-                </a>
+                <div class="pc-only">
+                    <a target="_blank" href="readlocal.html?doc=resources/shortcuts.md">
+                        <icon>keyboard_keys</icon>Keyboard shortcuts
+                    </a>
+                </div>
                 <a target="_blank" href="download.html">
                     <icon>install_desktop</icon>Markedit Desktop
                 </a>
                 <a target="_blank" href="https://github.com/flarom/Markedit">
                     <icon>code</icon>GitHub Repository
                 </a>
+                <button onclick="showCard('file-menu')" ><icon>draft</icon>File <div class="pc-only"><kbd>Alt</kbd>+<kbd>F</kbd></div></button>
+                <button onclick="showCard('insert-menu')" ><icon>add</icon>Insert <div class="pc-only"><kbd>Alt</kbd>+<kbd>I</kbd></div></button>
+                <button onclick="showCard('format-menu')" ><icon>brush</icon>Format <div class="pc-only"><kbd>Alt</kbd>+<kbd>O</kbd></div></button>
             </div>
         </div>
         <!-- file menu -->
         <div class="card" id="file-menu">
-            <kbd>Alt</kbd>+<kbd>F</kbd> File
+            <div class="pc-only"><kbd>Alt</kbd>+<kbd>F</kbd></div> File
             <hr>
             <div id="focus-group">
                 <button onclick="fileNew()" id="file-menu-first">New document</button>
-                <button onclick="fileSave()">Save <kbd>Ctrl</kbd>+<kbd>S</kbd></button>
-                <button onclick="fileOpen()">Open <kbd>Ctrl</kbd>+<kbd>O</kbd></button>
+                <button onclick="fileSave()">Save <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>S</kbd></div></button>
+                <button onclick="fileOpen()">Open <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>O</kbd></div></button>
                 <button onclick="loadFromCookies()">Load auto-save</button>
             </div>
         </div>
         <!-- insert menu -->
         <div class="card" id="insert-menu">
-            <kbd>Alt</kbd>+<kbd>I</kbd> Insert
+            <div class="pc-only"><kbd>Alt</kbd>+<kbd>I</kbd></div> Insert
             <hr>
             <div id="focus-group">
                 <button onclick="insertTable()" id="insert-menu-first">Table</button>
-                <button onclick="insertEmbUrl()">Embed URL <kbd>Ctrl</kbd>+<kbd>K</kbd></button>
+                <button onclick="insertEmbUrl()">Embed URL <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>K</kbd></div></button>
                 <button onclick="insertImage()">Image</button>
-                <button onclick="showCard('insert-emoji-menu')">Emoji <kbd>Alt</kbd>+<kbd>;</kbd></button>
+                <button onclick="showCard('insert-emoji-menu')">Emoji <div class="pc-only"><kbd>Alt</kbd>+<kbd>;</kbd></div></button>
                 <button onclick="showCard('insert-media-menu')">Media</button>
                 <button onclick="insertSummary()">Summary</button>
                 <button onclick="insertDetails()">Drawer</button>
@@ -117,15 +126,15 @@
         
         <!-- format menu -->
         <div class="card" id="format-menu">
-            <kbd>Alt</kbd>+<kbd>O</kbd> Format
+            <div class="pc-only"><kbd>Alt</kbd>+<kbd>O</kbd></div> Format
             <hr>
             <div id="focus-group">
-                <button onclick="formatBold()" id="format-menu-first">Bold <kbd>Ctrl</kbd>+<kbd>B</kbd></button>
-                <button onclick="formatItalic()">Italic <kbd>Ctrl</kbd>+<kbd>I</kbd></button>
-                <button onclick="formatUnderline()">Underline <kbd>Ctrl</kbd>+<kbd>U</kbd></button>
+                <button onclick="formatBold()" id="format-menu-first">Bold <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>B</kbd></div></button>
+                <button onclick="formatItalic()">Italic <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>I</kbd></div></button>
+                <button onclick="formatUnderline()">Underline <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>U</kbd></div></button>
                 <button onclick="formatStriketrough()">Striketrough</button>
-                <button onclick="formatSup()">Superscript <kbd>Ctrl</kbd>+<kbd>.</kbd></button>
-                <button onclick="formatSub()">Subscript <kbd>Ctrl</kbd>+<kbd>,</kbd></button>
+                <button onclick="formatSup()">Superscript <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>.</kbd></div></button>
+                <button onclick="formatSub()">Subscript <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>,</kbd></div></button>
             </div>
         </div>
     </div>
@@ -258,7 +267,12 @@
         });
 
         showCard('initial-menu');
-        textarea.focus();
+        if (window.innerWidth > 768) {
+            const textarea = document.querySelector('textarea');
+            if (textarea) {
+                textarea.focus();
+            }
+        }
     </script>
 </body>
 

@@ -32,8 +32,23 @@
     border: none;
     outline: none;
 }
+.pc-only {
+    display: inline;
+}
 
-@media screen and (max-width: 500px) {
+.mobile-only {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .pc-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: inline;
+    }
+
     .tiny-flex {
         display: block;
     }
