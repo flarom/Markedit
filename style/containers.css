@@ -6,17 +6,19 @@
 
 .emoji-box {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 2fr);
     gap: 0.5rem;
     max-height: 300px;
     overflow: scroll;
     transition: height 1s;
+    width: 100%;
 }
 
 .emoji-box button {
     font-size: xx-large;
     text-shadow: 3px 3px var(--border);
     transition: text-shadow 0.3s;
+    background: none;
 }
 
 .emoji-box button:hover {
