@@ -27,6 +27,8 @@ function fileSave(){
     document.body.removeChild(a);
 
     URL.revokeObjectURL(a.href);
+
+    updateTabTitle();
 }
 
 function fileOpen(){
@@ -47,6 +49,7 @@ function fileOpen(){
 
             textarea.value = content;
             setDocumentTitleFromFileName(file.name);
+            updateTabTitle();
         };
 
         reader.readAsText(file);
@@ -54,7 +57,6 @@ function fileOpen(){
 
     input.click();
 }
-
 
 let documentTitle = "";
 
@@ -98,6 +100,7 @@ function autoSave() {
         document.cookie = `${AUTOSAVE_KEY}=${encoded}; max-age=604800; path=/`;
 
         blinkTextArea();
+        updateTabTitle();
 
         console.log("autosaved as: " + content);
     }
@@ -133,3 +136,8 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+function updateTabTitle(){
+    let title = getDocumentTitle() + " - Markedit";
+    document.title = title;
+}

@@ -33,10 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "**Goals for today:**",
         "**Don't forget to** ...",
         "**Ideas to explore later** ...",
+        "![🐱 very important](https://placecats.com/400/400)",
+        "![🐱 very important](https://placewaifu.com/image/400/400)",
 
         "This will totally make sense later",
         "Plain text isn't enough",
-        "![🐱 very important](https://placecats.com/500/500)",
+        "Ideas for world peace (or dinner)",
+        "Documenting my villain arc",
     ];
     const randomPlaceholder = placeholderList[Math.floor(Math.random() * placeholderList.length)];
     textarea.placeholder = randomPlaceholder;

@@ -101,29 +101,35 @@ body {
     }
 
     #bottom-bar {
-        left: 0;
-        right: 0;
-        width: 100%;
-        padding: 5px;
+        left: 20;
+        right: 20;
+        box-sizing: border-box;
     }
 
     #bottom-bar textarea {
-        width: 90vw;
-        border-radius: 15px;
         height: 40px;
-    }
-
-    #bottom-bar textarea:focus {
+        width: 100vw;
         position: fixed;
         bottom: 0;
         left: 0;
-        right: 0;
-        height: 90vh;
-        z-index: 999;
         font-size: large;
-        border-radius: 0px;
+        border-radius: 15px 15px 0px 0px;
+        border-bottom: 0;
+        border-left: 0;
+        border-right: 0;
         padding: 20px;
-        background-color: var(--gui-bg);
+        box-sizing: border-box;
+    }
+
+    #bottom-bar textarea:focus {
+        height: 90vh;
+        width: 100vw;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        font-size: large;
+        padding: 20px;
+        box-sizing: border-box;
     }
 }
 
