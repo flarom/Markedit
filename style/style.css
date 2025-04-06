@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
 
 @keyframes fade-in {
-    0% { opacity: 0;}
-    100% {opacity: 100%;}
+    0% { opacity: 0; }
+    100% { opacity: 100%; }
 }
 
 @keyframes shine {
@@ -50,18 +50,20 @@ body {
     padding-bottom: 200px;
     margin-bottom: 10px;
     overflow-y: scroll;
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
 
 #bottom-bar {
     position: fixed;
     bottom: 0;
     left: 12vw;
-    width: 100%;
+    width: calc(100% - 12vw);
     padding: 10px;
     z-index: 3;
     display: flex;
-    align-content: center;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 #bottom-bar textarea {
@@ -76,8 +78,7 @@ body {
     outline: none;
     resize: none;
     padding: 10px;
-    box-sizing: border-box;
-    transition: height 1s, width 1s;
+    transition: height 0.5s, width 0.5s;
 }
 
 #bottom-bar textarea:hover,
@@ -85,26 +86,43 @@ body {
     height: 100px;
 }
 
+/* 🌸 Responsividade MÁXIMA para mobile cutie */
 @media (max-width: 768px) {
+    body {
+        overflow: auto;
+    }
+
+    #document,
+    .document {
+        height: auto;
+        padding-bottom: 100px;
+    }
+
     #bottom-bar {
-        left: 0px;
+        left: 0;
         width: 100%;
         padding: 5px;
+    }
+
+    #bottom-bar textarea {
+        width: 100%;
+        border-radius: 15px;
+        height: 40px;
     }
 
     #bottom-bar textarea:focus {
         position: fixed;
         bottom: 0;
         left: 0;
-        width: 100%;
+        width: 100vw;
         height: 90vh;
         z-index: 999;
         font-size: large;
         border-radius: 0;
         padding: 20px;
+        background-color: var(--gui-bg);
     }
 }
-
 
 #focus-group {
     display: flex;
