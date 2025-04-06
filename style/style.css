@@ -65,7 +65,7 @@ body {
 #bottom-bar textarea {
     font-size: larger;
     width: 75%;
-    height: 40px;
+    height: 20px;
     background-color: var(--gui-bg);
     backdrop-filter: blur(10px);
     color: var(--gui-fg);
@@ -75,6 +75,13 @@ body {
     resize: none;
     padding: 10px;
     transition: height 0.5s, width 0.5s;
+    text-align: left;
+}
+
+#bottom-bar textarea::placeholder {
+    text-align: center;
+    display: block;
+    width: 100%;
 }
 
 #bottom-bar textarea:hover,
