@@ -1,6 +1,46 @@
 document.addEventListener("DOMContentLoaded", function () {
     const textarea = document.querySelector("textarea");
     
+    const placeholderList = [
+        "Type anything you want",
+        "Just type",
+        "Your notes go here...",
+        "Write something worth saving",
+        "Type your next big idea",
+        "Begin your documentation",
+        "Write it down before you forget",
+        "Add your thoughts...",
+        "Draft something cool",
+        "Insert deep thoughts here",
+
+        "Today I learned...",
+        "Dear future me...",
+        "Things I don’t want to forget",
+        "Reflections, notes, and dreams",
+        "Another page, another story",
+        "What’s on your mind?",
+        "Stream of consciousness begins here",
+        "Let it flow, don’t overthink",
+        "Start typing. Just start.",
+        "One thought at a time...",
+
+        "- [ ] Add a task...",
+        "# Meeting notes",
+        "# To-do List",
+        "## Project roadmap",
+        "## Brainstorm Session",
+        "## Notes from the call",
+        "**Goals for today:**",
+        "**Don't forget to** ...",
+        "**Ideas to explore later** ...",
+
+        "This will totally make sense later",
+        "Plain text isn't enough",
+        "![🐱 very important](https://placecats.com/500/550)",
+    ];
+    const randomPlaceholder = placeholderList[Math.floor(Math.random() * placeholderList.length)];
+    textarea.placeholder = randomPlaceholder;
+
     textarea.addEventListener("keydown", function (e) {
         const { selectionStart: start, selectionEnd: end, value } = this;
 

@@ -72,19 +72,39 @@ body {
     backdrop-filter: blur(10px);
     color: var(--gui-fg);
     border: 1px solid var(--gui-border);
-    border-top: 4px solid var(--gui-border);
-    border-radius: 15px;
+    border-radius: 20px;
     outline: none;
     resize: none;
     padding: 10px;
     box-sizing: border-box;
-    transition: height 1s;
+    transition: height 1s, width 1s;
 }
 
 #bottom-bar textarea:hover,
 #bottom-bar textarea:focus {
     height: 100px;
 }
+
+@media (max-width: 768px) {
+    #bottom-bar {
+        left: 0px;
+        width: 100%;
+        padding: 5px;
+    }
+
+    #bottom-bar textarea:focus {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 90vh;
+        z-index: 999;
+        font-size: large;
+        border-radius: 0;
+        padding: 20px;
+    }
+}
+
 
 #focus-group {
     display: flex;
