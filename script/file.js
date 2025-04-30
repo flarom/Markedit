@@ -88,7 +88,6 @@ function setDocumentTitleFromFileName(filename){
 
 const AUTOSAVE_KEY = "MarkeditAutosavedDocumentRaw";
 
-
 function autoSave() {
     const textarea = document.getElementById("input");
     if (!textarea) return;
@@ -96,8 +95,7 @@ function autoSave() {
     const content = textarea.value;
 
     if (content !== "") {
-        const encoded = encodeURIComponent(content);
-        document.cookie = `${AUTOSAVE_KEY}=${encoded}; max-age=604800; path=/`;
+        localStorage.setItem(AUTOSAVE_KEY, content);
 
         blinkTextArea();
         updateTabTitle();
@@ -106,18 +104,14 @@ function autoSave() {
     }
 }
 
-function loadFromCookies() {
-    const cookies = document.cookie.split("; ");
+function loadFromStorage() {
     const textarea = document.getElementById("input");
     if (!textarea) return;
 
-    for (let cookie of cookies) {
-        const [name, value] = cookie.split("=");
-        if (name === AUTOSAVE_KEY) {
-            textarea.value = decodeURIComponent(value || "");
-            updateMarkdown(textarea.value);
-            break;
-        }
+    const savedContent = localStorage.getItem(AUTOSAVE_KEY);
+    if (savedContent !== null && savedContent !== "") {
+        textarea.value = savedContent;
+        updateMarkdown(savedContent);
     }
 }
 
@@ -135,7 +129,10 @@ window.addEventListener("DOMContentLoaded", () => {
             startAutoSaveTimer();
         });
     }
+
+    loadFromStorage(); // Carrega conteúdo salvo quando a página carrega
 });
+
 
 function updateTabTitle(){
     let title = getDocumentTitle() + " - Markedit";
