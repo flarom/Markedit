@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const focusGroups = document.querySelectorAll(".card #focus-group");
+    const focusGroups = document.querySelectorAll(".card .focus-group");
     
     focusGroups.forEach(focusGroup => {
         const focusableElements = Array.from(focusGroup.querySelectorAll("a, button"));
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function focusFirstItem(menuId) {
-        const firstElement = document.querySelector(`#${menuId} #focus-group a, #${menuId} #focus-group button`);
+        const firstElement = document.querySelector(`#${menuId} .focus-group a, #${menuId} .focus-group button`);
         if (firstElement) {
             firstElement.focus();
         }

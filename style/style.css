@@ -128,12 +128,12 @@ body {
         box-sizing: border-box;
     }
 
-    #focus-group * {
+    .focus-group * {
         margin-bottom: 20px;
     }
 }
 
-#focus-group {
+.focus-group {
     display: flex;
     flex-direction: column;
     gap: 1px;
