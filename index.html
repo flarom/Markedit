@@ -32,7 +32,7 @@
         <div class="card" id="initial-menu">
             <div class="pc-only"><kbd>F1</kbd> show menu</div>
             <img src="resources/logo.png" alt="Markedit logo" width="100%">
-            <div id="focus-group">
+            <div class="focus-group">
                 <a target="_blank" href="readlocal.html?doc=README.md" id="initial-menu-first">
                     <icon>docs</icon>Documentation
                 </a>
@@ -52,22 +52,22 @@
                 <button onclick="showCard('format-menu')" ><icon>brush</icon>Format <div class="pc-only"><kbd>Alt</kbd>+<kbd>O</kbd></div></button>
             </div>
         </div>
-        <!-- file menu -->
+        
         <div class="card" id="file-menu">
             <div class="pc-only"><kbd>Alt</kbd>+<kbd>F</kbd></div> File
             <hr>
-            <div id="focus-group">
+            <div class="focus-group">
                 <button onclick="fileNew()" id="file-menu-first">New document</button>
                 <button onclick="fileSave()">Save <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>S</kbd></div></button>
                 <button onclick="fileOpen()">Open <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>O</kbd></div></button>
                 <button onclick="loadFromCookies()">Load auto-save</button>
             </div>
         </div>
-        <!-- insert menu -->
+        
         <div class="card" id="insert-menu">
             <div class="pc-only"><kbd>Alt</kbd>+<kbd>I</kbd></div> Insert
             <hr>
-            <div id="focus-group">
+            <div class="focus-group">
                 <button onclick="insertTable()" id="insert-menu-first">Table</button>
                 <button onclick="insertEmbUrl()">Embed URL <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>K</kbd></div></button>
                 <button onclick="insertImage()">Image</button>
@@ -78,11 +78,11 @@
                 <button onclick="showCard('insert-style-menu')">Document style</button>
             </div>
         </div>
-
+        
         <div class="card" id="insert-style-menu">
             Document Style
             <hr>
-            <div id="focus-group">
+            <div class="focus-group">
                 Document
                 <button onclick="insertStyle('--doc-bg')" id="insert-style-menu-first">Document background</button>
                 <button onclick="insertStyle('--box-bg')">Box background</button>
@@ -92,18 +92,18 @@
                 <button onclick="insertStyle('--highlight')">Highlight color</button>
                 <button onclick="insertStyle('--highlight-bg')">Highlight background</button>
                 <button onclick="insertStyle('--document-width')">Document width</button>
-
+        
                 Typefaces
                 <button onclick="insertStyle('--font')">Text font</button>
                 <button onclick="insertStyle('--font-title')">Title font</button>
                 <button onclick="insertStyle('--font-mono')">Code font</button>
             </div>
         </div>
-
+        
         <div class="card" id="insert-media-menu">
             Media
             <hr>
-            <div id="focus-group">
+            <div class="focus-group">
                 HTML 5
                 <button onclick="insertPrompt(`<audio controls><source src='`, `'></audio>`, `Audio URL:`)" id="insert-media-menu-first" >Audio</button>
                 <button onclick="insertPrompt(`<video width='100%' height='500' controls><source src='`, `'></video>`, `Video URL:`)">Video</button>
@@ -111,11 +111,11 @@
                 <button onclick="insertYTVideo()">YouTube Player</button>
             </div>
         </div>
-
+        
         <div class="card" id="insert-emoji-menu">
             Emojis
             <hr>
-            <div id="focus-group">
+            <div class="focus-group">
                 <div style="display: flex;">
                     <icon>search</icon>
                     <input type="text" id="insert-emoji-menu-first" class="emoji-search" placeholder="Search for a emoji">
@@ -124,17 +124,23 @@
             </div>
         </div>
         
-        <!-- format menu -->
         <div class="card" id="format-menu">
             <div class="pc-only"><kbd>Alt</kbd>+<kbd>O</kbd></div> Format
             <hr>
-            <div id="focus-group">
+            <div class="focus-group">
                 <button onclick="formatBold()" id="format-menu-first">Bold <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>B</kbd></div></button>
                 <button onclick="formatItalic()">Italic <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>I</kbd></div></button>
                 <button onclick="formatUnderline()">Underline <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>U</kbd></div></button>
                 <button onclick="formatStriketrough()">Striketrough</button>
                 <button onclick="formatSup()">Superscript <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>.</kbd></div></button>
                 <button onclick="formatSub()">Subscript <div class="pc-only"><kbd>Ctrl</kbd>+<kbd>,</kbd></div></button>
+            </div>
+        </div>
+        
+        <div class="card" id="map">
+            <div class="pc-only"><kbd>Alt</kbd>+<kbd>M</kbd></div> Map
+            <hr>
+            <div class="focus-group" id="map-links">
             </div>
         </div>
     </div>
@@ -212,6 +218,11 @@
                 showCard("insert-emoji-menu");
             }
 
+            if (event.altKey && event.key === "m") { // Alt + M - open map
+                event.preventDefault();
+                showCard("map");
+            }
+
             // __ file ________________________________________________________
 
             if (event.ctrlKey && event.key === "s") { // Ctrl + S - save
@@ -272,7 +283,34 @@
             if (textarea) {
                 textarea.focus();
             }
+        };
+
+        function generateMapLinks() {
+            const output = document.getElementById("output");
+            const mapLinks = document.getElementById("map-links");
+            mapLinks.innerHTML = "";
+
+            const headings = output.querySelectorAll("h1, h2, h3, h4, h5, h6");
+            headings.forEach((heading) => {
+                // Verifica se o título já possui um ID, caso contrário, cria um
+                if (!heading.id) {
+                    heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-'); // Gera um ID baseado no texto
+                }
+            
+                const link = document.createElement("a");
+                link.href = `#${heading.id}`; // Usa o ID existente do título
+                link.textContent = heading.textContent;
+                link.style.display = "block";
+            
+                mapLinks.appendChild(link);
+            });
         }
+
+        textarea.addEventListener("input", () => {
+            hideCards();
+            generateMapLinks();
+        });
+        document.addEventListener("DOMContentLoaded", generateMapLinks);
     </script>
 </body>
 
